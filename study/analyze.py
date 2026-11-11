@@ -65,7 +65,7 @@ def main():
               f"interval and one corrected for the set's {tests} comparisons (models x task sets x distances x measures = "
               f"{len(reply_files)} x {len(sets)} x {len(Recolorings)} x {len(Measures)}): percentile intervals of "
               f"{Resamples:,} resamples of the drawings. Decisions use the corrected interval; the margin for answer "
-              f"change is {Margin * 100:g} pp.", ""]
+              f"change is {Margin * 100:g} pp. The sign test is exact and two-sided; its corrected level is {Level / tests:.2g}.", ""]
     rows = []
     for path in reply_files:
         replies = first_replies(path)
@@ -227,14 +227,28 @@ def decision(name, low, high, margin=Margin):
     return "drop" if high < -Tie else "rise" if low > Tie else "no change"
 
 
+def sign_test(values):
+    """The exact two-sided sign test of no difference: among the drawings whose value is not zero, how
+    likely a split at least as uneven as the observed one is if each were as likely positive as negative.
+    It checks a decision that rests on few drawings, where percentile intervals are too narrow."""
+    values = values[~np.isnan(values)]
+    up, down = int((values > 0).sum()), int((values < 0).sum())
+    n, k = up + down, min(up, down)
+    return min(1.0, 2 * sum(math.comb(n, i) for i in range(k + 1)) / 2 ** n) if n else 1.0
+
+
 def analyze_tasks(tables, tasks, tests, margin=Margin):
     """Every comparison of one task set: name -> its estimate, number of drawings, 95% interval,
-    interval corrected for `tests` comparisons (Bonferroni), decision and bootstrap distribution."""
+    interval corrected for `tests` comparisons (Bonferroni), decision, bootstrap distribution, and
+    whether the exact sign test also finds a difference at the corrected level."""
+    per_task = [differences(tables[task]) for task in tasks]
     results = {}
-    for name, (estimate, n, means) in bootstrap([differences(tables[task]) for task in tasks]).items():
+    for name, (estimate, n, means) in bootstrap(per_task).items():
         corrected = interval(means, Level / tests)
+        p = sign_test(np.concatenate([task[name] for task in per_task]))
         results[name] = {"estimate": estimate, "n": n, "interval": interval(means), "corrected": corrected,
-                         "decision": decision(name, *corrected, margin), "means": means}
+                         "decision": decision(name, *corrected, margin), "means": means,
+                         "sign test": p, "sign test agrees": p < Level / tests}
     return results
 
 
@@ -314,14 +328,14 @@ def model_report(model, tables, items, replies, tests):
 
 def comparison_tables(title, results, decisions=True):
     """One table per measure: a row per distance with the estimate, its 95% interval and, where the
-    comparison decides something, the corrected interval and the decision."""
+    comparison decides something, the corrected interval, the decision and the exact sign test's p."""
     lines = [f"### {title}", ""]
     for measure in Measures:
-        lines += [f"| {measure.capitalize()} | Difference (pp) | 95% interval |" + (" Corrected interval | Decision |" if decisions else "") + " n |",
-                  "| --- | --- | --- |" + (" --- | --- |" if decisions else "") + " --- |"]
+        lines += [f"| {measure.capitalize()} | Difference (pp) | 95% interval |" + (" Corrected interval | Decision | Sign test p |" if decisions else "") + " n |",
+                  "| --- | --- | --- |" + (" --- | --- | --- |" if decisions else "") + " --- |"]
         for r in Recolorings:
             row = results[f"{measure}, {r}"]
-            cells = [points(row["estimate"]), span(row["interval"])] + ([span(row["corrected"]), row["decision"]] if decisions else [])
+            cells = [points(row["estimate"]), span(row["interval"])] + ([span(row["corrected"]), row["decision"], f"{row['sign test']:.2g}"] if decisions else [])
             lines.append(f"| {distance_name(r)} | " + " | ".join(cells) + f" | {row['n']} |")
         lines.append("")
     return lines

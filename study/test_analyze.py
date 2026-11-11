@@ -174,6 +174,21 @@ def test_the_corrected_interval_is_wider_than_the_95_percent_interval():
     assert row["corrected"][0] < row["interval"][0] < row["estimate"] < row["interval"][1] < row["corrected"][1]
 
 
+def test_the_sign_test_is_exact_and_two_sided():
+    assert analyze.sign_test(np.array([-1.0] * 9 + [0.0] * 891)) == 2 * 0.5 ** 9
+    assert analyze.sign_test(np.array([-1.0] * 30 + [1.0] * 7 + [math.nan])) == pytest.approx(1.9e-4, rel=0.05)
+    assert analyze.sign_test(np.array([1.0, -1.0])) == analyze.sign_test(np.zeros(5)) == 1.0
+
+
+def test_a_drop_on_nine_drawings_passes_the_interval_but_not_the_sign_test():
+    n = 300
+    right = table(original=[1] * n, repeat=[1] * n, reassigned=[1] * n, edited=[0] * n, truth=[1] * n, truth_edited=[0] * n)
+    nine = table(original=[1] * n, repeat=[1] * n, reassigned=[1] * n, edited=[0] * n, truth=[1] * n, truth_edited=[0] * n,
+                 d7_edited=[1] * 9 + [0] * (n - 9))
+    row = analyze.analyze_tasks({"T1": nine, "T2": right, "T3": right}, analyze.ColorTasks, tests=84)["accuracy, edited, d7"]
+    assert row["decision"] == "drop" and not row["sign test agrees"]
+
+
 def test_the_family_counts_every_comparison_of_the_main_study():
     assert analyze.comparisons(models=2, task_sets=2) == 84
 
@@ -229,7 +244,7 @@ def test_the_report_runs_end_to_end_on_a_generated_set(tmp_path, monkeypatch):
 
     report = (tmp_path / "pilot" / "results.md").read_text()
     assert "corrected for the set's 42 comparisons (models x task sets x distances x measures = 1 x 2 x 7 x 3)" in report
-    assert "| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 30 |" in report
+    assert "| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 30 |" in report
     assert "| T1 | 100.0% | 0.0% | 100.0 [100.0, 100.0], n = 10 | " in report
 
 

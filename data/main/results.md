@@ -1,6 +1,6 @@
 # Results: main
 
-1200 drawings. Differences are in percentage points (pp). Each has a 95% interval and one corrected for the set's 84 comparisons (models x task sets x distances x measures = 2 x 2 x 7 x 3): percentile intervals of 100,000 resamples of the drawings. Decisions use the corrected interval; the margin for answer change is 5 pp.
+1200 drawings. Differences are in percentage points (pp). Each has a 95% interval and one corrected for the set's 84 comparisons (models x task sets x distances x measures = 2 x 2 x 7 x 3): percentile intervals of 100,000 resamples of the drawings. Decisions use the corrected interval; the margin for answer change is 5 pp. The sign test is exact and two-sided; its corrected level is 0.0006.
 
 ## Claude Opus 5.5
 
@@ -21,67 +21,67 @@ Invalid includes refusals: without the image, some models decline to answer, and
 
 ### Color tasks (T1, T2, T3)
 
-| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [-0.3, 0.3] | [-0.6, 0.6] | supported | 900 |
-| 20 | -0.1 | [-0.3, 0.0] | [-0.7, 0.0] | supported | 900 |
-| 14 | -0.1 | [-0.3, 0.0] | [-0.7, 0.0] | supported | 900 |
-| 10 | -0.1 | [-0.3, 0.0] | [-0.7, 0.0] | supported | 900 |
-| 7 | 0.3 | [-0.1, 0.9] | [-0.4, 1.3] | supported | 900 |
-| 5 | 5.7 | [4.2, 7.2] | [3.1, 8.6] | inconclusive | 900 |
-| 3 | 41.3 | [38.3, 44.3] | [36.1, 46.6] | rejected | 900 |
+| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [-0.3, 0.3] | [-0.6, 0.6] | supported | 1 | 900 |
+| 20 | -0.1 | [-0.3, 0.0] | [-0.7, 0.0] | supported | 1 | 900 |
+| 14 | -0.1 | [-0.3, 0.0] | [-0.7, 0.0] | supported | 1 | 900 |
+| 10 | -0.1 | [-0.3, 0.0] | [-0.7, 0.0] | supported | 1 | 900 |
+| 7 | 0.3 | [-0.1, 0.9] | [-0.4, 1.3] | supported | 0.38 | 900 |
+| 5 | 5.7 | [4.2, 7.2] | [3.1, 8.6] | inconclusive | 1.2e-14 | 900 |
+| 3 | 41.3 | [38.3, 44.3] | [36.1, 46.6] | rejected | 1.9e-110 | 900 |
 
-| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | -0.1 | [-0.3, 0.0] | [-0.7, 0.0] | no change | 900 |
-| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 900 |
-| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 900 |
-| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 900 |
-| 7 | -0.4 | [-0.9, -0.1] | [-1.3, 0.0] | no change | 900 |
-| 5 | -5.8 | [-7.3, -4.3] | [-8.7, -3.3] | drop | 900 |
-| 3 | -41.4 | [-44.4, -38.4] | [-46.7, -36.2] | drop | 900 |
+| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | -0.1 | [-0.3, 0.0] | [-0.7, 0.0] | no change | 1 | 900 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 900 |
+| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 900 |
+| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 900 |
+| 7 | -0.4 | [-0.9, -0.1] | [-1.3, 0.0] | no change | 0.12 | 900 |
+| 5 | -5.8 | [-7.3, -4.3] | [-8.7, -3.3] | drop | 4.4e-16 | 900 |
+| 3 | -41.4 | [-44.4, -38.4] | [-46.7, -36.2] | drop | 1e-112 | 900 |
 
-| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 900 |
-| 20 | -0.1 | [-0.3, 0.0] | [-0.7, 0.0] | no change | 900 |
-| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 900 |
-| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 900 |
-| 7 | -1.0 | [-1.7, -0.4] | [-2.3, -0.1] | drop | 900 |
-| 5 | -6.7 | [-8.3, -5.1] | [-9.8, -4.1] | drop | 900 |
-| 3 | -38.7 | [-41.7, -35.8] | [-43.8, -33.4] | drop | 900 |
+| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 900 |
+| 20 | -0.1 | [-0.3, 0.0] | [-0.7, 0.0] | no change | 1 | 900 |
+| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 900 |
+| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 900 |
+| 7 | -1.0 | [-1.7, -0.4] | [-2.3, -0.1] | drop | 0.0039 | 900 |
+| 5 | -6.7 | [-8.3, -5.1] | [-9.8, -4.1] | drop | 1.7e-18 | 900 |
+| 3 | -38.7 | [-41.7, -35.8] | [-43.8, -33.4] | drop | 3.5e-105 | 900 |
 
 ### Control (T4)
 
-| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 300 |
-| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 300 |
-| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 300 |
-| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 300 |
-| 7 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 300 |
-| 5 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 300 |
-| 3 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 300 |
+| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 300 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 300 |
+| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 300 |
+| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 300 |
+| 7 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 300 |
+| 5 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 300 |
+| 3 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 300 |
 
-| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 300 |
-| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 300 |
-| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 300 |
-| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 300 |
-| 7 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 300 |
-| 5 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 300 |
-| 3 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 300 |
+| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 300 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 300 |
+| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 300 |
+| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 300 |
+| 7 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 300 |
+| 5 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 300 |
+| 3 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 300 |
 
-| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 300 |
-| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 300 |
-| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 300 |
-| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 300 |
-| 7 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 300 |
-| 5 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 300 |
-| 3 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 300 |
+| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 300 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 300 |
+| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 300 |
+| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 300 |
+| 7 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 300 |
+| 5 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 300 |
+| 3 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 300 |
 
 ### T1 alone (descriptive)
 
@@ -388,67 +388,67 @@ Invalid includes refusals: without the image, some models decline to answer, and
 
 ### Color tasks (T1, T2, T3)
 
-| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.1 | [-0.2, 0.6] | [-0.6, 0.9] | supported | 890 |
-| 20 | 0.7 | [0.1, 1.3] | [-0.2, 1.9] | supported | 893 |
-| 14 | 3.4 | [2.2, 4.6] | [1.4, 5.6] | inconclusive | 892 |
-| 10 | 17.8 | [15.4, 20.4] | [13.5, 22.2] | rejected | 891 |
-| 7 | 36.7 | [33.7, 39.7] | [31.6, 42.0] | rejected | 891 |
-| 5 | 47.8 | [44.7, 50.8] | [42.5, 53.1] | rejected | 894 |
-| 3 | 60.2 | [57.3, 63.2] | [55.0, 65.4] | rejected | 893 |
+| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.1 | [-0.2, 0.6] | [-0.6, 0.9] | supported | 1 | 890 |
+| 20 | 0.7 | [0.1, 1.3] | [-0.2, 1.9] | supported | 0.07 | 893 |
+| 14 | 3.4 | [2.2, 4.6] | [1.4, 5.6] | inconclusive | 1.5e-08 | 892 |
+| 10 | 17.8 | [15.4, 20.4] | [13.5, 22.2] | rejected | 2.7e-48 | 891 |
+| 7 | 36.7 | [33.7, 39.7] | [31.6, 42.0] | rejected | 6e-97 | 891 |
+| 5 | 47.8 | [44.7, 50.8] | [42.5, 53.1] | rejected | 6.2e-127 | 894 |
+| 3 | 60.2 | [57.3, 63.2] | [55.0, 65.4] | rejected | 3e-160 | 893 |
 
-| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.4 | [-0.1, 1.1] | [-0.6, 1.7] | no change | 893 |
-| 20 | 0.1 | [-0.7, 0.9] | [-1.3, 1.6] | no change | 896 |
-| 14 | -2.6 | [-3.9, -1.2] | [-5.0, -0.3] | drop | 895 |
-| 10 | -17.2 | [-19.8, -14.7] | [-21.7, -12.8] | drop | 894 |
-| 7 | -36.2 | [-39.2, -33.3] | [-41.5, -31.0] | drop | 894 |
-| 5 | -47.6 | [-50.7, -44.6] | [-52.9, -42.3] | drop | 897 |
-| 3 | -59.8 | [-62.8, -56.9] | [-65.0, -54.6] | drop | 896 |
+| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.4 | [-0.1, 1.1] | [-0.6, 1.7] | no change | 0.29 | 893 |
+| 20 | 0.1 | [-0.7, 0.9] | [-1.3, 1.6] | no change | 1 | 896 |
+| 14 | -2.6 | [-3.9, -1.2] | [-5.0, -0.3] | drop | 0.00019 | 895 |
+| 10 | -17.2 | [-19.8, -14.7] | [-21.7, -12.8] | drop | 8.2e-41 | 894 |
+| 7 | -36.2 | [-39.2, -33.3] | [-41.5, -31.0] | drop | 1.2e-91 | 894 |
+| 5 | -47.6 | [-50.7, -44.6] | [-52.9, -42.3] | drop | 3.4e-125 | 897 |
+| 3 | -59.8 | [-62.8, -56.9] | [-65.0, -54.6] | drop | 3.7e-156 | 896 |
 
-| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [-0.7, 0.7] | [-1.2, 1.2] | no change | 895 |
-| 20 | -0.1 | [-1.0, 0.8] | [-1.6, 1.3] | no change | 895 |
-| 14 | -3.4 | [-4.7, -2.0] | [-5.9, -1.1] | drop | 895 |
-| 10 | -18.1 | [-20.7, -15.5] | [-22.7, -13.8] | drop | 896 |
-| 7 | -37.6 | [-40.6, -34.5] | [-42.8, -32.4] | drop | 892 |
-| 5 | -47.4 | [-50.5, -44.3] | [-52.6, -42.0] | drop | 890 |
-| 3 | -60.9 | [-63.8, -58.0] | [-66.1, -55.9] | drop | 896 |
+| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [-0.7, 0.7] | [-1.2, 1.2] | no change | 1 | 895 |
+| 20 | -0.1 | [-1.0, 0.8] | [-1.6, 1.3] | no change | 1 | 895 |
+| 14 | -3.4 | [-4.7, -2.0] | [-5.9, -1.1] | drop | 1.4e-06 | 895 |
+| 10 | -18.1 | [-20.7, -15.5] | [-22.7, -13.8] | drop | 4.2e-45 | 896 |
+| 7 | -37.6 | [-40.6, -34.5] | [-42.8, -32.4] | drop | 2.9e-101 | 892 |
+| 5 | -47.4 | [-50.5, -44.3] | [-52.6, -42.0] | drop | 2e-125 | 890 |
+| 3 | -60.9 | [-63.8, -58.0] | [-66.1, -55.9] | drop | 8.2e-161 | 896 |
 
 ### Control (T4)
 
-| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.3 | [0.0, 1.0] | [0.0, 2.0] | supported | 300 |
-| 20 | -0.3 | [-1.0, 0.0] | [-2.0, 0.0] | supported | 300 |
-| 14 | -0.3 | [-1.0, 0.0] | [-2.0, 0.0] | supported | 300 |
-| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 300 |
-| 7 | 0.3 | [0.0, 1.0] | [0.0, 2.0] | supported | 300 |
-| 5 | 0.7 | [0.0, 1.7] | [0.0, 2.7] | supported | 300 |
-| 3 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 300 |
+| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.3 | [0.0, 1.0] | [0.0, 2.0] | supported | 1 | 300 |
+| 20 | -0.3 | [-1.0, 0.0] | [-2.0, 0.0] | supported | 1 | 300 |
+| 14 | -0.3 | [-1.0, 0.0] | [-2.0, 0.0] | supported | 1 | 300 |
+| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 300 |
+| 7 | 0.3 | [0.0, 1.0] | [0.0, 2.0] | supported | 1 | 300 |
+| 5 | 0.7 | [0.0, 1.7] | [0.0, 2.7] | supported | 0.5 | 300 |
+| 3 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 300 |
 
-| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [-1.0, 1.0] | [-1.7, 1.7] | no change | 300 |
-| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 300 |
-| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 300 |
-| 10 | 0.3 | [0.0, 1.0] | [0.0, 2.0] | no change | 300 |
-| 7 | 0.0 | [-1.0, 1.0] | [-1.7, 2.0] | no change | 300 |
-| 5 | -0.3 | [-1.7, 0.7] | [-2.7, 1.7] | no change | 300 |
-| 3 | 0.3 | [0.0, 1.0] | [0.0, 2.0] | no change | 300 |
+| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [-1.0, 1.0] | [-1.7, 1.7] | no change | 1 | 300 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 300 |
+| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 300 |
+| 10 | 0.3 | [0.0, 1.0] | [0.0, 2.0] | no change | 1 | 300 |
+| 7 | 0.0 | [-1.0, 1.0] | [-1.7, 2.0] | no change | 1 | 300 |
+| 5 | -0.3 | [-1.7, 0.7] | [-2.7, 1.7] | no change | 1 | 300 |
+| 3 | 0.3 | [0.0, 1.0] | [0.0, 2.0] | no change | 1 | 300 |
 
-| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.3 | [0.0, 1.0] | [0.0, 2.0] | no change | 300 |
-| 20 | -0.3 | [-1.0, 0.0] | [-2.0, 0.0] | no change | 300 |
-| 14 | 0.3 | [0.0, 1.0] | [0.0, 2.0] | no change | 300 |
-| 10 | 0.0 | [-1.0, 1.0] | [-2.0, 1.7] | no change | 300 |
-| 7 | 0.3 | [0.0, 1.0] | [0.0, 2.0] | no change | 300 |
-| 5 | 0.3 | [0.0, 1.0] | [0.0, 2.0] | no change | 300 |
-| 3 | -0.7 | [-1.7, 0.0] | [-2.7, 0.0] | no change | 300 |
+| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.3 | [0.0, 1.0] | [0.0, 2.0] | no change | 1 | 300 |
+| 20 | -0.3 | [-1.0, 0.0] | [-2.0, 0.0] | no change | 1 | 300 |
+| 14 | 0.3 | [0.0, 1.0] | [0.0, 2.0] | no change | 1 | 300 |
+| 10 | 0.0 | [-1.0, 1.0] | [-2.0, 1.7] | no change | 1 | 300 |
+| 7 | 0.3 | [0.0, 1.0] | [0.0, 2.0] | no change | 1 | 300 |
+| 5 | 0.3 | [0.0, 1.0] | [0.0, 2.0] | no change | 1 | 300 |
+| 3 | -0.7 | [-1.7, 0.0] | [-2.7, 0.0] | no change | 0.5 | 300 |
 
 ### T1 alone (descriptive)
 

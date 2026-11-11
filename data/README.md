@@ -29,5 +29,9 @@ Each folder holds:
 - `replies_to_code.csv`: every distinct reply text once, for hand coding. `pilot/hand_coding.csv`
   holds the final pilot's hand coding, which agreed with the parser on every reply.
 
+The files use the code's names, the thesis its own: an *item* is a *drawing*, the *ladder* palettes
+(`d20` to `d3`) are the *controlled palettes*, `hue_center` is the *base hue*, `reassigned` is the
+*recoloring at 52 units* and `edited` the *edit at 52 units*.
+
 The items come from `study/generate.py`, the replies from `study/query.py` and the results from
 `study/analyze.py`. The data are released under CC BY 4.0 and the code under the MIT license.

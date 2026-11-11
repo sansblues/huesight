@@ -1,6 +1,6 @@
 # Results: pilot
 
-60 drawings. Differences are in percentage points (pp). Each has a 95% interval and one corrected for the set's 84 comparisons (models x task sets x distances x measures = 4 x 1 x 7 x 3): percentile intervals of 100,000 resamples of the drawings. Decisions use the corrected interval; the margin for answer change is 5 pp.
+60 drawings. Differences are in percentage points (pp). Each has a 95% interval and one corrected for the set's 84 comparisons (models x task sets x distances x measures = 4 x 1 x 7 x 3): percentile intervals of 100,000 resamples of the drawings. Decisions use the corrected interval; the margin for answer change is 5 pp. The sign test is exact and two-sided; its corrected level is 0.0006.
 
 ## Claude Opus 5.5
 
@@ -20,35 +20,35 @@ Invalid includes refusals: without the image, some models decline to answer, and
 
 ### Color tasks (T1, T2, T3)
 
-| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
-| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
-| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
-| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
-| 7 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
-| 5 | 6.7 | [1.7, 13.3] | [0.0, 20.0] | inconclusive | 60 |
-| 3 | 41.7 | [30.0, 53.3] | [21.7, 61.7] | rejected | 60 |
+| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 60 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 60 |
+| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 60 |
+| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 60 |
+| 7 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 60 |
+| 5 | 6.7 | [1.7, 13.3] | [0.0, 20.0] | inconclusive | 0.12 | 60 |
+| 3 | 41.7 | [30.0, 53.3] | [21.7, 61.7] | rejected | 6e-08 | 60 |
 
-| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 7 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 5 | -6.7 | [-13.3, -1.7] | [-20.0, 0.0] | no change | 60 |
-| 3 | -41.7 | [-53.3, -30.0] | [-61.7, -21.7] | drop | 60 |
+| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 7 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 5 | -6.7 | [-13.3, -1.7] | [-20.0, 0.0] | no change | 0.12 | 60 |
+| 3 | -41.7 | [-53.3, -30.0] | [-61.7, -21.7] | drop | 6e-08 | 60 |
 
-| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 7 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 5 | -6.7 | [-13.3, -1.7] | [-20.0, 0.0] | no change | 60 |
-| 3 | -45.0 | [-56.7, -33.3] | [-65.0, -25.0] | drop | 60 |
+| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 7 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 5 | -6.7 | [-13.3, -1.7] | [-20.0, 0.0] | no change | 0.12 | 60 |
+| 3 | -45.0 | [-56.7, -33.3] | [-65.0, -25.0] | drop | 1.5e-08 | 60 |
 
 ### T1 alone (descriptive)
 
@@ -303,35 +303,35 @@ Invalid includes refusals: without the image, some models decline to answer, and
 
 ### Color tasks (T1, T2, T3)
 
-| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
-| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
-| 14 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | inconclusive | 60 |
-| 10 | 6.7 | [1.7, 13.3] | [0.0, 20.0] | inconclusive | 60 |
-| 7 | 30.0 | [18.3, 41.7] | [11.7, 51.7] | rejected | 60 |
-| 5 | 41.7 | [31.7, 51.7] | [23.3, 60.0] | rejected | 60 |
-| 3 | 66.7 | [56.7, 76.7] | [48.3, 85.0] | rejected | 60 |
+| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 60 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 60 |
+| 14 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | inconclusive | 1 | 60 |
+| 10 | 6.7 | [1.7, 13.3] | [0.0, 20.0] | inconclusive | 0.12 | 60 |
+| 7 | 30.0 | [18.3, 41.7] | [11.7, 51.7] | rejected | 7.6e-06 | 60 |
+| 5 | 41.7 | [31.7, 51.7] | [23.3, 60.0] | rejected | 6e-08 | 60 |
+| 3 | 66.7 | [56.7, 76.7] | [48.3, 85.0] | rejected | 1.8e-12 | 60 |
 
-| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 14 | -1.7 | [-5.0, 0.0] | [-10.0, 0.0] | no change | 60 |
-| 10 | -6.7 | [-13.3, -1.7] | [-20.0, 0.0] | no change | 60 |
-| 7 | -30.0 | [-41.7, -18.3] | [-51.7, -11.7] | drop | 60 |
-| 5 | -41.7 | [-51.7, -31.7] | [-60.0, -23.3] | drop | 60 |
-| 3 | -66.7 | [-76.7, -56.7] | [-85.0, -48.3] | drop | 60 |
+| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 14 | -1.7 | [-5.0, 0.0] | [-10.0, 0.0] | no change | 1 | 60 |
+| 10 | -6.7 | [-13.3, -1.7] | [-20.0, 0.0] | no change | 0.12 | 60 |
+| 7 | -30.0 | [-41.7, -18.3] | [-51.7, -11.7] | drop | 7.6e-06 | 60 |
+| 5 | -41.7 | [-51.7, -31.7] | [-60.0, -23.3] | drop | 6e-08 | 60 |
+| 3 | -66.7 | [-76.7, -56.7] | [-85.0, -48.3] | drop | 1.8e-12 | 60 |
 
-| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 10 | -6.7 | [-13.3, -1.7] | [-20.0, 0.0] | no change | 60 |
-| 7 | -23.3 | [-33.3, -13.3] | [-41.7, -6.7] | drop | 60 |
-| 5 | -41.7 | [-53.3, -30.0] | [-63.3, -21.7] | drop | 60 |
-| 3 | -66.7 | [-76.7, -56.7] | [-85.0, -48.3] | drop | 60 |
+| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 10 | -6.7 | [-13.3, -1.7] | [-20.0, 0.0] | no change | 0.12 | 60 |
+| 7 | -23.3 | [-33.3, -13.3] | [-41.7, -6.7] | drop | 0.00012 | 60 |
+| 5 | -41.7 | [-53.3, -30.0] | [-63.3, -21.7] | drop | 6e-08 | 60 |
+| 3 | -66.7 | [-76.7, -56.7] | [-85.0, -48.3] | drop | 1.8e-12 | 60 |
 
 ### T1 alone (descriptive)
 
@@ -586,35 +586,35 @@ Invalid includes refusals: without the image, some models decline to answer, and
 
 ### Color tasks (T1, T2, T3)
 
-| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
-| 20 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | inconclusive | 60 |
-| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
-| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
-| 7 | 3.3 | [0.0, 8.3] | [0.0, 13.3] | inconclusive | 60 |
-| 5 | 11.7 | [5.0, 20.0] | [0.0, 26.7] | inconclusive | 60 |
-| 3 | 40.0 | [28.3, 51.7] | [20.0, 60.0] | rejected | 60 |
+| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 60 |
+| 20 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | inconclusive | 1 | 60 |
+| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 60 |
+| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 60 |
+| 7 | 3.3 | [0.0, 8.3] | [0.0, 13.3] | inconclusive | 0.5 | 60 |
+| 5 | 11.7 | [5.0, 20.0] | [0.0, 26.7] | inconclusive | 0.016 | 60 |
+| 3 | 40.0 | [28.3, 51.7] | [20.0, 60.0] | rejected | 1.2e-07 | 60 |
 
-| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 60 |
-| 20 | 0.0 | [-5.0, 5.0] | [-8.3, 8.3] | no change | 60 |
-| 14 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 60 |
-| 10 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 60 |
-| 7 | -1.7 | [-6.7, 3.3] | [-11.7, 8.3] | no change | 60 |
-| 5 | -10.0 | [-18.3, -1.7] | [-26.7, 3.3] | no change | 60 |
-| 3 | -40.0 | [-51.7, -28.3] | [-60.0, -20.0] | drop | 60 |
+| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 1 | 60 |
+| 20 | 0.0 | [-5.0, 5.0] | [-8.3, 8.3] | no change | 1 | 60 |
+| 14 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 1 | 60 |
+| 10 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 1 | 60 |
+| 7 | -1.7 | [-6.7, 3.3] | [-11.7, 8.3] | no change | 1 | 60 |
+| 5 | -10.0 | [-18.3, -1.7] | [-26.7, 3.3] | no change | 0.07 | 60 |
+| 3 | -40.0 | [-51.7, -28.3] | [-60.0, -20.0] | drop | 1.2e-07 | 60 |
 
-| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 60 |
-| 20 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 60 |
-| 14 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 60 |
-| 10 | -1.7 | [-6.7, 3.3] | [-13.3, 8.3] | no change | 60 |
-| 7 | -3.3 | [-8.3, 0.0] | [-13.3, 0.0] | no change | 60 |
-| 5 | -15.0 | [-23.3, -6.7] | [-31.7, -1.7] | drop | 60 |
-| 3 | -40.0 | [-53.3, -26.7] | [-61.7, -16.7] | drop | 60 |
+| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 1 | 60 |
+| 20 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 1 | 60 |
+| 14 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 1 | 60 |
+| 10 | -1.7 | [-6.7, 3.3] | [-13.3, 8.3] | no change | 1 | 60 |
+| 7 | -3.3 | [-8.3, 0.0] | [-13.3, 0.0] | no change | 0.5 | 60 |
+| 5 | -15.0 | [-23.3, -6.7] | [-31.7, -1.7] | drop | 0.0039 | 60 |
+| 3 | -40.0 | [-53.3, -26.7] | [-61.7, -16.7] | drop | 8e-07 | 60 |
 
 ### T1 alone (descriptive)
 
@@ -868,35 +868,35 @@ Invalid includes refusals: without the image, some models decline to answer, and
 
 ### Color tasks (T1, T2, T3)
 
-| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
-| 20 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | inconclusive | 60 |
-| 14 | 5.0 | [0.0, 11.7] | [0.0, 16.7] | inconclusive | 60 |
-| 10 | 20.0 | [10.0, 30.0] | [5.0, 38.3] | inconclusive | 60 |
-| 7 | 36.7 | [25.0, 48.3] | [16.7, 56.7] | rejected | 60 |
-| 5 | 43.3 | [31.7, 55.0] | [23.3, 61.7] | rejected | 60 |
-| 3 | 58.3 | [46.7, 70.0] | [38.3, 78.3] | rejected | 60 |
+| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 1 | 60 |
+| 20 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | inconclusive | 1 | 60 |
+| 14 | 5.0 | [0.0, 11.7] | [0.0, 16.7] | inconclusive | 0.25 | 60 |
+| 10 | 20.0 | [10.0, 30.0] | [5.0, 38.3] | inconclusive | 0.00049 | 60 |
+| 7 | 36.7 | [25.0, 48.3] | [16.7, 56.7] | rejected | 4.8e-07 | 60 |
+| 5 | 43.3 | [31.7, 55.0] | [23.3, 61.7] | rejected | 3e-08 | 60 |
+| 3 | 58.3 | [46.7, 70.0] | [38.3, 78.3] | rejected | 5.8e-11 | 60 |
 
-| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 20 | -1.7 | [-5.0, 0.0] | [-10.0, 0.0] | no change | 60 |
-| 14 | -5.0 | [-11.7, 0.0] | [-16.7, 0.0] | no change | 60 |
-| 10 | -20.0 | [-30.0, -10.0] | [-38.3, -5.0] | drop | 60 |
-| 7 | -36.7 | [-48.3, -25.0] | [-56.7, -16.7] | drop | 60 |
-| 5 | -43.3 | [-55.0, -31.7] | [-61.7, -23.3] | drop | 60 |
-| 3 | -58.3 | [-70.0, -46.7] | [-78.3, -38.3] | drop | 60 |
+| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 20 | -1.7 | [-5.0, 0.0] | [-10.0, 0.0] | no change | 1 | 60 |
+| 14 | -5.0 | [-11.7, 0.0] | [-16.7, 0.0] | no change | 0.25 | 60 |
+| 10 | -20.0 | [-30.0, -10.0] | [-38.3, -5.0] | drop | 0.00049 | 60 |
+| 7 | -36.7 | [-48.3, -25.0] | [-56.7, -16.7] | drop | 4.8e-07 | 60 |
+| 5 | -43.3 | [-55.0, -31.7] | [-61.7, -23.3] | drop | 3e-08 | 60 |
+| 3 | -58.3 | [-70.0, -46.7] | [-78.3, -38.3] | drop | 5.8e-11 | 60 |
 
-| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | n |
-| --- | --- | --- | --- | --- | --- |
-| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
-| 20 | -1.7 | [-5.0, 0.0] | [-8.3, 0.0] | no change | 60 |
-| 14 | -6.7 | [-13.3, -1.7] | [-20.0, 0.0] | no change | 60 |
-| 10 | -18.3 | [-28.3, -8.3] | [-36.7, -3.3] | drop | 60 |
-| 7 | -28.3 | [-40.0, -16.7] | [-50.0, -10.0] | drop | 60 |
-| 5 | -60.0 | [-71.7, -48.3] | [-78.3, -40.0] | drop | 60 |
-| 3 | -61.7 | [-71.7, -51.7] | [-80.0, -43.3] | drop | 60 |
+| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | Sign test p | n |
+| --- | --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 1 | 60 |
+| 20 | -1.7 | [-5.0, 0.0] | [-8.3, 0.0] | no change | 1 | 60 |
+| 14 | -6.7 | [-13.3, -1.7] | [-20.0, 0.0] | no change | 0.12 | 60 |
+| 10 | -18.3 | [-28.3, -8.3] | [-36.7, -3.3] | drop | 0.00098 | 60 |
+| 7 | -28.3 | [-40.0, -16.7] | [-50.0, -10.0] | drop | 1.5e-05 | 60 |
+| 5 | -60.0 | [-71.7, -48.3] | [-78.3, -40.0] | drop | 2.9e-11 | 60 |
+| 3 | -61.7 | [-71.7, -51.7] | [-80.0, -43.3] | drop | 1.5e-11 | 60 |
 
 ### T1 alone (descriptive)
 
