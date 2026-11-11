@@ -31,7 +31,7 @@ The main run's numbers are in `data/main/results.md`.
 | `study/analyze.py` | Scores the replies and compares every variation with the original (bootstrap intervals, H1 and H2) |
 | `study/test_*.py` | Tests |
 | `data/` | Items, queries, replies and results: `main/` and the final `pilot/` (see `data/README.md`) |
-| `checks/` | Checks behind numbers in the thesis: the stimuli (`stimuli.py`) and Qwen's reasoning effort (`qwen-effort.py`) |
+| `checks/` | Checks behind numbers in the thesis: the stimuli (`stimuli.py`), statements derived from the results (`statements.py`) and Qwen's reasoning effort (`qwen-effort.py`) |
 
 ## Reproducing
 
