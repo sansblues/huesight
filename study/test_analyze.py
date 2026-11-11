@@ -48,64 +48,137 @@ def table(original, repeat, reassigned, edited, truth, truth_edited, **other):
             "answers": {c: np.array(v, float) for c, v in answers.items()}}
 
 
-def test_an_invalid_reply_counts_as_a_flip_even_against_another_invalid_reply():
+def test_an_invalid_reply_counts_as_a_changed_answer_even_against_another_invalid_reply():
     t = table(original=[Invalid, 1], repeat=[Invalid, 1], reassigned=[1, 1],
               edited=[0, 0], truth=[1, 1], truth_edited=[0, 0])
-    stats = analyze.item_statistics(t)
-    assert [x.tolist() for x in stats["excess flips, reassigned"]] == [[1.0, 0.0], [1.0, 0.0]]  # flipped, and flipped on the repeat
-    assert stats["gain over no image"][0].tolist() == [0.0, 1.0]
+    # Drawing 1 changed under the recoloring and on the repeat, so the two cancel; drawing 2 changed in neither.
+    assert analyze.differences(t)["answer change, reassigned"].tolist() == [0.0, 0.0]
+    assert analyze.differences(t)["accuracy, recolored, reassigned"].tolist() == [1.0, 0.0]
 
 
-def test_a_missing_reply_drops_the_item_from_comparisons_that_need_it():
+def test_answer_change_is_the_change_under_the_recoloring_minus_the_change_on_the_repeat():
+    t = table(original=[1, 1, 1], repeat=[1, 0, 1], reassigned=[0, 1, 1],
+              edited=[0, 0, 0], truth=[1, 1, 1], truth_edited=[0, 0, 0])
+    assert analyze.differences(t)["answer change, reassigned"].tolist() == [1.0, -1.0, 0.0]
+
+
+def test_accuracy_is_scored_against_the_edited_answer_on_an_edited_drawing():
+    # Drawing 1 follows the edit, drawing 2 misses it, drawing 3 was already wrong on the original.
+    t = table(original=[1, 1, 0], repeat=[1, 1, 0], reassigned=[1, 1, 0],
+              edited=[0, 1, 0], truth=[1, 1, 1], truth_edited=[0, 0, 0])
+    assert analyze.differences(t)["accuracy, edited, reassigned"].tolist() == [0.0, -1.0, 1.0]
+
+
+def test_a_missing_reply_drops_the_drawing_from_comparisons_that_need_it():
     t = table(original=[1, 1], repeat=[1, 1], reassigned=[1, 1], d20=[Missing, 1],
               edited=[0, 0], truth=[1, 1], truth_edited=[0, 0])
-    stats = analyze.item_statistics(t)
-    assert math.isnan(stats["excess flips, d20"][0][0])
-    assert stats["excess flips, d14"][0].tolist() == [0.0, 0.0]
+    values = analyze.differences(t)
+    assert math.isnan(values["answer change, d20"][0]) and math.isnan(values["accuracy, recolored, d20"][0])
+    assert values["answer change, d14"].tolist() == [0.0, 0.0]
 
 
-def test_h2_counts_items_correct_on_both_drawings():
-    # Item 1 misses the edit, item 2 is wrong on the original, so only item 1 counts against H2.
-    t = table(original=[1, 0], repeat=[1, 0], reassigned=[1, 0],
-              edited=[1, 0], truth=[1, 1], truth_edited=[0, 0])
-    both_repeat, both_edited = analyze.item_statistics(t)["edit loss, reassigned"]
-    assert (both_repeat - both_edited).tolist() == [1.0, 0.0]
-
-
-def test_h2_fails_a_model_that_merges_colors_although_its_recolored_and_edited_errors_balance():
-    # At d3 a model merges the adjacent colors, so it answers "yes" to every T1 item. Recolored and edited
-    # drawings are then equally wrong; against the repeat, the edit loss is plain.
+def test_a_model_that_merges_colors_fails_on_recolored_and_edited_drawings_alike():
+    # At d3 a model merges the adjacent colors, so it answers "yes" to every T1 drawing.
     n = 100
     truth = [1] * 50 + [0] * 50
     edited_truth = [0] * 50 + [1] * 50
     merged = table(original=truth, repeat=truth, reassigned=truth, edited=edited_truth, truth=truth,
                    truth_edited=edited_truth, d3=[1] * n, d3_edited=[1] * n)
-    stats = analyze.item_statistics(merged)
-    assert np.mean(np.subtract(*stats["edit loss, d3"])) == 0.5 and np.mean(np.subtract(*stats["excess flips, d3"])) == 0.5
+    values = analyze.differences(merged)
+    assert np.mean(values["answer change, d3"]) == 0.5
+    assert np.mean(values["accuracy, recolored, d3"]) == np.mean(values["accuracy, edited, d3"]) == -0.5
 
 
-def test_support_needs_every_task_below_the_margin_and_one_clearly_failing_task_rejects():
-    assert analyze.verdict([(-0.02, 0.02), (-0.02, 0.02), (0.07, 0.17)]) == "rejected"
-    assert analyze.verdict([(-0.02, 0.02), (-0.02, 0.02), (0.0, 0.06)]) == "inconclusive"
-    assert analyze.verdict([(-0.02, 0.02), (-0.02, 0.02), (0.0, 0.04)]) == "supported"
+def test_the_bootstrap_estimate_is_the_mean_over_the_drawings_with_a_value():
+    estimate, n, means = analyze.bootstrap([{"x": np.array([1.0, 0.0, math.nan, -1.0, 1.0])}], resamples=100)["x"]
+    assert (estimate, n, len(means)) == (0.25, 4, 100)
+
+
+def test_the_bootstrap_is_reproducible_and_matches_the_standard_error_of_a_mean():
+    values = np.array([1.0] * 90 + [0.0] * 810)
+    first = analyze.bootstrap([{"x": values}], resamples=20_000)["x"][2]
+    second = analyze.bootstrap([{"x": values}], resamples=20_000)["x"][2]
+    assert (first == second).all()
+    assert first.std() == pytest.approx(math.sqrt(0.1 * 0.9 / 900), rel=0.03)
+    low, high = analyze.interval(first)
+    assert low == pytest.approx(0.1 - 1.96 * 0.01, abs=0.002) and high == pytest.approx(0.1 + 1.96 * 0.01, abs=0.002)
+
+
+def test_every_resample_keeps_each_tasks_number_of_drawings():
+    # One task is all ones, the other all zeros: only an unstratified resample could move the mean.
+    means = analyze.bootstrap([{"x": np.ones(30)}, {"x": np.zeros(10)}], resamples=1_000)["x"][2]
+    assert (means == 0.75).all()
+
+
+def test_comparisons_share_the_resampled_drawings():
+    values = np.array([1.0, 0.0, 0.0, 1.0, 0.0, 1.0])
+    results = analyze.bootstrap([{"x": values, "y": 1 - values}], resamples=1_000)
+    assert np.allclose(results["x"][2] + results["y"][2], 1)
+
+
+def test_an_interval_without_any_difference_has_no_width():
+    means = analyze.bootstrap([{"x": np.zeros(300)}], resamples=1_000)["x"][2]
+    assert analyze.interval(means) == (0.0, 0.0)
+
+
+def test_interval_bounds_are_resample_means_and_never_exclude_a_value_the_resamples_reached():
+    means = np.array([-0.2] * 3 + [0.0] * 97)
+    assert analyze.interval(means, 0.05) == (-0.2, 0.0)   # 3% of the resamples lie at -0.2
+    assert analyze.interval(means, 0.10) == (0.0, 0.0)
+
+
+def test_h1_is_supported_below_the_margin_rejected_above_it_and_inconclusive_across_it():
+    assert analyze.decision("answer change, d10", -0.01, 0.04) == "supported"
+    assert analyze.decision("answer change, d10", 0.03, 0.08) == "inconclusive"
+    assert analyze.decision("answer change, d10", 0.07, 0.17) == "rejected"
+    assert analyze.decision("answer change, d10", 0.03, 0.08, margin=0.10) == "supported"
 
 
 def test_a_bound_exactly_at_the_margin_is_not_below_it_even_after_floating_point_rounding():
     upper = float(np.mean([0.0, 0.15, 0.0]))  # 0.049999999999999996
     assert upper < analyze.Margin
-    assert analyze.verdict([(0.0, upper), (0.0, 0.0), (0.0, 0.0)]) == "inconclusive"
+    assert analyze.decision("answer change, d10", 0.0, upper) == "inconclusive"
 
 
-def test_pair_correctness_does_not_let_two_poor_answers_cancel():
-    # At d3 the plain drawing is right only on item 1 and the edited one only on item 2: each is 50%
-    # accurate, but no item is right on both.
-    t = table(original=[1, 0], repeat=[1, 0], reassigned=[1, 0], edited=[0, 1], truth=[1, 0], truth_edited=[0, 1],
-              d3=[1, 1], d3_edited=[1, 1])
-    lines = analyze.pair_correctness({task: t for task in analyze.Tasks})
-    assert next(line for line in lines if line.startswith("| d3 |")).startswith("| d3 | 0.0% [")
+def test_accuracy_drops_only_when_the_interval_lies_below_zero():
+    assert analyze.decision("accuracy, edited, d7", -0.023, -0.001) == "drop"
+    assert analyze.decision("accuracy, edited, d7", -0.013, 0.0) == "no change"
+    assert analyze.decision("accuracy, recolored, d7", 0.001, 0.02) == "rise"
 
 
-def test_the_report_shows_a_missing_edited_reply_in_the_h2_denominator_only():
+def test_a_model_that_reads_everything_right_shows_no_change_at_any_distance():
+    n = 300
+    right = table(original=[1] * n, repeat=[1] * n, reassigned=[1] * n, edited=[0] * n, truth=[1] * n, truth_edited=[0] * n)
+    results = analyze.analyze_tasks({task: right for task in analyze.Tasks}, analyze.ColorTasks, tests=84)
+    assert {row["decision"] for name, row in results.items() if name.startswith("answer change")} == {"supported"}
+    assert {row["decision"] for name, row in results.items() if name.startswith("accuracy")} == {"no change"}
+    assert results["accuracy, edited, d3"]["n"] == 900
+
+
+def test_a_loss_at_one_distance_shows_at_that_distance_only():
+    n = 300
+    wrong_at_d10 = [0] * 60 + [1] * (n - 60)
+    t = table(original=[1] * n, repeat=[1] * n, reassigned=[1] * n, edited=[0] * n, truth=[1] * n,
+              truth_edited=[0] * n, d10=wrong_at_d10)
+    results = analyze.analyze_tasks({task: t for task in analyze.Tasks}, analyze.ColorTasks, tests=84)
+    assert results["answer change, d10"]["estimate"] == pytest.approx(0.2)
+    assert (results["answer change, d10"]["decision"], results["accuracy, recolored, d10"]["decision"]) == ("rejected", "drop")
+    assert (results["answer change, d7"]["decision"], results["accuracy, edited, d10"]["decision"]) == ("supported", "no change")
+
+
+def test_the_corrected_interval_is_wider_than_the_95_percent_interval():
+    n = 300
+    some_wrong = [0] * 30 + [1] * (n - 30)
+    t = table(original=[1] * n, repeat=[1] * n, reassigned=some_wrong, edited=[0] * n, truth=[1] * n, truth_edited=[0] * n)
+    row = analyze.analyze_tasks({task: t for task in analyze.Tasks}, ("T1",), tests=84)["answer change, d10"]
+    assert row["corrected"][0] < row["interval"][0] < row["estimate"] < row["interval"][1] < row["corrected"][1]
+
+
+def test_the_family_counts_every_comparison_of_the_main_study():
+    assert analyze.comparisons(models=2, task_sets=2) == 84
+
+
+def test_the_report_counts_a_missing_edited_reply_in_that_comparison_only():
     items, _ = generate.make_items("pilot", seed=3, items_per_task=20)
     replies = {}
     for item in items:
@@ -113,31 +186,11 @@ def test_the_report_shows_a_missing_edited_reply_in_the_h2_denominator_only():
             answer = item["edited_answer"] if analyze.is_edited(condition) else item["answer"]
             replies[f"{item['id']}-{condition}"] = {"text": str(answer), "stop": "done", "ok": True}
     del replies[next(f"{i['id']}-d10-edited" for i in items if i["task"] == "T1")]
-    report = "\n".join(analyze.model_report("m", analyze.answer_tables(items, replies), items, replies))
-    assert "| d10 | " in report and "| 60 / 59 |" in report
-
-
-def test_flips_at_risk_count_only_items_where_reading_two_colors_as_one_changes_the_answer():
-    # At d3 the two no items flip to yes; the two yes items cannot be hurt by confusing colors.
-    t = table(original=[1, 1, 0, 0], repeat=[1, 1, 0, 0], reassigned=[1, 1, 0, 0], edited=[0, 0, 1, 1],
-              truth=[1, 1, 0, 0], truth_edited=[0, 0, 1, 1], d3=[1, 1, 1, 1])
-    lines = analyze.flips_at_risk({task: t for task in analyze.Tasks})
-    row = next(line for line in lines if line.startswith("| d3 |"))
-    assert row.split(" | ")[1].startswith("100.0% [") and "n = 2" in row.split(" | ")[1]
-
-
-def test_wilson_interval_for_5_of_10():
-    p, low, high = analyze.wilson(5, 10)
-    assert (p, low, high) == pytest.approx((0.5, 0.2366, 0.7634), abs=1e-4)
-
-
-def test_wilson_interval_contains_an_estimate_of_one_despite_rounding():
-    p, low, high = analyze.wilson(3, 3)
-    assert low <= p <= high
-
-
-def test_wilson_without_data_is_undefined_rather_than_a_crash():
-    assert all(math.isnan(x) for x in analyze.wilson(0, 0))
+    tables = analyze.answer_tables(items, replies)
+    results = analyze.analyze_tasks(tables, analyze.ColorTasks, tests=42)
+    assert (results["accuracy, recolored, d10"]["n"], results["accuracy, edited, d10"]["n"]) == (60, 59)
+    report = "\n".join(analyze.model_report("m", tables, items, replies, tests=42))
+    assert "1 replies are missing. No decision changes." in report
 
 
 def test_hand_coding_is_compared_with_the_parser_text_by_text(tmp_path):
@@ -159,56 +212,6 @@ def test_a_blank_hand_coding_sheet_does_not_pass(tmp_path):
     assert "0 of 1 distinct replies hand coded" in report and "does not pass yet" in report
 
 
-def test_a_model_that_reads_everything_right_is_supported_at_every_distance():
-    n = 300
-    right = table(original=[1] * n, repeat=[1] * n, reassigned=[1] * n, edited=[0] * n, truth=[1] * n, truth_edited=[0] * n)
-    h1, h2, _ = analyze.hypotheses({task: right for task in analyze.Tasks})
-    assert analyze.summary(h1) == analyze.summary(h2) == "supported at every distance, down to d3"
-
-
-def test_each_sequence_stops_at_the_first_distance_that_fails():
-    n = 300
-    wrong_at_d10 = [0] * 30 + [1] * (n - 30)
-    t = table(original=[1] * n, repeat=[1] * n, reassigned=[1] * n, edited=[0] * n, truth=[1] * n,
-              truth_edited=[0] * n, d10=wrong_at_d10, d5_edited=[1] * 30 + [0] * (n - 30))
-    h1, h2, _ = analyze.hypotheses({task: t for task in analyze.Tasks})
-    assert analyze.summary(h1) == "supported down to d14; d10 rejected in T1, T2, T3, T4"
-    assert analyze.summary(h2) == "supported down to d7; d5 rejected in T1, T2, T3, T4"
-
-
-def test_one_task_that_clearly_fails_rejects_both_hypotheses_in_that_task():
-    # On T1 the reassigned answer is wrong on 32 of 300 items, and the edits on exactly those items are
-    # missed. The mean over tasks is 3.6%, below the margin; T1's interval lies above it.
-    n, bad = 300, 32
-    perfect = table(original=[1] * n, repeat=[1] * n, reassigned=[1] * n, edited=[0] * n, truth=[1] * n, truth_edited=[0] * n)
-    t1 = table(original=[1] * n, repeat=[1] * n, reassigned=[1] * n, edited=[0] * n, truth=[1] * n, truth_edited=[0] * n)
-    t1["answers"]["reassigned"] = np.array([0] * bad + [1] * (n - bad), float)
-    t1["answers"]["edited"] = np.array([1] * bad + [0] * (n - bad), float)
-    h1, h2, intervals = analyze.hypotheses({"T1": t1, "T2": perfect, "T3": perfect})
-    assert intervals["excess flips, reassigned"]["T1"][1] > analyze.Margin
-    assert (analyze.summary(h1), analyze.summary(h2)) == ("rejected in T1 at reassigned", "rejected in T1 at reassigned")
-
-
-def test_tango_interval_matches_the_contingencytables_package():
-    # Cavo et al. (2012), table [[59, 6], [16, 80]]; the package's tests expect -0.0621 (-0.1240 to -0.0054).
-    x = np.array([1] * 59 + [1] * 6 + [0] * 16 + [0] * 80, bool)
-    y = np.array([1] * 59 + [0] * 6 + [1] * 16 + [0] * 80, bool)
-    estimate, low, high = analyze.tango(x, y)
-    assert (round(estimate, 4), round(low, 4), round(high, 4)) == (-0.0621, -0.124, -0.0054)
-
-
-def test_tango_interval_when_every_item_differs_one_way_matches_the_package():
-    # The package's tests: three discordant items, all one way, give 1.0000 (-0.1230 to 1.0000).
-    estimate, low, high = analyze.tango(np.array([True] * 3), np.array([False] * 3))
-    assert (round(estimate, 4), round(low, 4), round(high, 4)) == (1.0, -0.123, 1.0)
-
-
-def test_no_flips_at_all_still_leave_an_interval_of_about_1_percent_above_zero():
-    zeros = np.zeros(300, bool)
-    _, low, high = analyze.tango(zeros, zeros)
-    assert -0.013 < low < -0.012 and 0.012 < high < 0.013
-
-
 def test_the_report_runs_end_to_end_on_a_generated_set(tmp_path, monkeypatch):
     items, _ = generate.make_items("pilot", seed=3, items_per_task=10)
     (tmp_path / "pilot" / "replies").mkdir(parents=True)
@@ -216,7 +219,7 @@ def test_the_report_runs_end_to_end_on_a_generated_set(tmp_path, monkeypatch):
     with open(tmp_path / "pilot" / "replies" / "perfect.jsonl", "w") as f:
         for item in items:
             for condition in analyze.Conditions:
-                answer = item["edited_answer"] if analyze.is_edited(condition) else item["answer"]
+                answer = "?" if condition == "no_image" else item["edited_answer"] if analyze.is_edited(condition) else item["answer"]
                 f.write(json.dumps({"query_id": f"{item['id']}-{condition}", "ok": True,
                                     "text": str(answer), "stop": "done"}) + "\n")
     monkeypatch.setattr(analyze, "Data", tmp_path)
@@ -225,26 +228,9 @@ def test_the_report_runs_end_to_end_on_a_generated_set(tmp_path, monkeypatch):
     analyze.main()
 
     report = (tmp_path / "pilot" / "results.md").read_text()
-    # 10 items per task are too few to bound even a perfect model's flips below the margin.
-    assert "### H1: inconclusive at reassigned" in report and "### H2: inconclusive at reassigned" in report
-    assert "| T1 | 100.0% [" in report
-
-
-def test_ten_units_are_enough_only_when_both_hypotheses_are_supported_there():
-    reached_d10 = [(r, "supported") for r in analyze.Recolorings[:4]] + [("d7", "inconclusive")]
-    assert analyze.ten_unit_verdict(reached_d10, reached_d10) == "enough"
-
-
-def test_a_rejection_at_ten_units_or_easier_means_ten_units_are_not_enough():
-    rejected_d14 = [("reassigned", "supported"), ("d20", "supported"), ("d14", "rejected in T2")]
-    reached_d10 = [(r, "supported") for r in analyze.Recolorings[:4]] + [("d7", "inconclusive")]
-    assert analyze.ten_unit_verdict(reached_d10, rejected_d14) == "not enough"
-
-
-def test_a_rejection_below_ten_units_says_nothing_about_ten_units():
-    stopped_d14 = [("reassigned", "supported"), ("d20", "supported"), ("d14", "inconclusive")]
-    rejected_d5 = [(r, "supported") for r in analyze.Recolorings[:5]] + [("d5", "rejected in T1")]
-    assert analyze.ten_unit_verdict(stopped_d14, rejected_d5) == "undetermined"
+    assert "corrected for the set's 42 comparisons (models x task sets x distances x measures = 1 x 2 x 7 x 3)" in report
+    assert "| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 30 |" in report
+    assert "| T1 | 100.0% | 0.0% | 100.0 [100.0, 100.0], n = 10 | " in report
 
 
 def test_structure_only_accuracy_answers_yes_exactly_for_nodes_with_two_neighbors():
@@ -261,22 +247,19 @@ def test_proximity_only_accuracy_uses_the_best_cutoff():
     assert analyze.proximity_only_accuracy([item(1, "yes"), item(2, "no"), item(3, "yes")]) == 2 / 3
 
 
-def test_a_rejection_at_52_units_says_nothing_about_ten_units():
-    rejected_52 = [("reassigned", "rejected in T1")]
-    reached_d10 = [(r, "supported") for r in analyze.Recolorings[:4]] + [("d7", "inconclusive")]
-    assert analyze.ten_unit_verdict(rejected_52, reached_d10) == "undetermined"
-
-
-def test_missing_replies_over_two_percent_get_a_rerun_with_missing_counted_as_invalid():
-    n = 100
+def test_counting_missing_replies_as_wrong_reports_the_decisions_that_change():
+    n = 300
     complete = table(original=[1] * n, repeat=[1] * n, reassigned=[1] * n, edited=[0] * n, truth=[1] * n, truth_edited=[0] * n)
     complete["answers"]["no_image"] = np.zeros(n)
     gappy = table(original=[1] * n, repeat=[1] * n, reassigned=[1] * n, edited=[0] * n, truth=[1] * n, truth_edited=[0] * n,
-                  d10=[Missing] * 3 + [1] * (n - 3))
+                  d10=[Missing] * 40 + [1] * (n - 40))
     gappy["answers"]["no_image"] = np.zeros(n)
-    assert analyze.missing_sensitivity({"T1": complete, "T2": complete, "T3": complete}) == []
-    report = "\n".join(analyze.missing_sensitivity({"T1": gappy, "T2": complete, "T3": complete}))
-    assert "Up to 3.0% of a condition's replies are missing." in report
+    full = {"T1": complete, "T2": complete, "T3": complete}
+    assert analyze.missing_as_wrong(full, {"color tasks": analyze.analyze_tasks(full, analyze.ColorTasks, 84)}, 84) == []
+    holes = {"T1": gappy, "T2": complete, "T3": complete}
+    report = "\n".join(analyze.missing_as_wrong(holes, {"color tasks": analyze.analyze_tasks(holes, analyze.ColorTasks, 84)}, 84))
+    assert "40 replies are missing. Decisions that change:" in report
+    assert "color tasks, accuracy, recolored, d10: no change becomes drop" in report
 
 
 def test_t4_rates_follow_the_shared_color_through_the_edit():

@@ -1,6 +1,6 @@
 """Generates the study items: graph drawings with known answers, drawn in every image condition.
 
-Implements the Stimuli, Tasks and Conditions of the thesis's Method chapter. Everything follows
+Implements the Drawings, Palettes, Tasks and Conditions of the thesis's Study Design chapter. Everything follows
 from the set's seed, so the same code and seed give the same items.
 
 Run: uv run study/generate.py pilot   (then: main)
@@ -53,9 +53,9 @@ Groups = 3
 
 Tab10 = ("#1f77b4", "#ff7f0e", "#2ca02c")  # matplotlib tab:blue, tab:orange, tab:green
 Derangements = ((1, 2, 0), (2, 0, 1))  # the two ways to move every group to another tab10 hue
-# The distance ladder (Method, Palettes): three colors of equal lightness and chroma around one hue center,
-# each outer color this many CIEDE2000 units from the middle one, up to 0.4 more after 8-bit rounding.
-# Only hue differs.
+# The controlled palettes, which the code calls the ladder (Study Design, Palettes): three colors of equal
+# lightness and chroma around one base hue (hue center), each outer color this many CIEDE2000 units from the
+# middle one, up to 0.4 more after 8-bit rounding. Only hue differs.
 Distances = (20, 14, 10, 7, 5, 3)
 HueCenters = (235, 295, 355, 55, 115, 175)  # six centers 60 degrees apart, balanced over items
 Lightness, Chroma = 65, 35
@@ -176,7 +176,7 @@ def random_connected_graph(n, m, rng):
 
 def drawing_problem(g, pos):
     """Why the drawing is ambiguous, or None: node centers at least 3 radii apart, and no edge
-    within 2 radii of a node it does not join (Method, Layout)."""
+    within 2 radii of a node it does not join (Study Design, Drawings)."""
     for a, b in combinations(g, 2):
         if math.dist(pos[a], pos[b]) < 3 * NodeRadius:
             return "nodes too close"
@@ -431,7 +431,7 @@ def segments_cross(p, q, r, s):
 
 
 def check_disjoint(items, pilot_manifests):
-    """Pilot items are never reused (Appendix, Pilots), so no main item may equal an item of any pilot."""
+    """Pilot items are never reused (Study Design, Pilot studies), so no main item may equal an item of any pilot."""
     if not pilot_manifests:
         sys.exit("no pilot manifest found; generate the pilot first")
     def key(item):  # edge order and direction do not matter

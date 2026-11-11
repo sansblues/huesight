@@ -6,14 +6,17 @@ Two multimodal models answer simple questions about generated graph drawings who
 into three color groups. Each drawing is recolored, which should change no answer, and edited, so
 that one node moves to another group and the answer of a color task should change. A control task
 asks about an edge, which no color can change. The colors step from 52 down to 3 CIEDE2000 units
-apart, past the design recommendation of 10 units. The question: down to which color distance do a
-model's answers hold, and is 10 units enough?
+apart, past the design recommendation of 10 units for human readers. Every variation is compared
+with the original drawing: how many more answers change than on a repeat of the original, and how
+much accuracy differs, each with a bootstrap interval over the drawings. The question: down to which
+color distance do a model's answers hold, and is 10 units enough?
 
 ## Results
 
-- **Claude Opus 5.5** holds down to 7 units, so the 10-unit recommendation is enough for it.
-- **Qwen3.8-27B** holds down to 20 units. The formal tests stopped inconclusive at 14, so its
-  verdict on 10 units is undetermined; at 10 units it gets about one color-task answer in five wrong.
+- **Claude Opus 5.5** answers as on the original down to 10 units. It loses at most 1 percentage
+  point of accuracy at 7 units and about 6 at 5 units, so the 10-unit recommendation is enough for it.
+- **Qwen3.8-27B** answers as on the original down to 20 units. It loses about 3 percentage points at
+  14 units and 17 to 18 at 10 units, so the recommendation is not enough for it.
 - **The control:** both models answer at least 99% of the control questions correctly at every
   distance, so the failures concern the colors: the models still read the edges.
 
@@ -25,8 +28,7 @@ The main run's numbers are in `data/main/results.md`.
 | --- | --- |
 | `study/generate.py` | Builds the items: graph, groups, question, answer and 15 images each |
 | `study/query.py` | Sends every query to one model and logs every request and reply |
-| `study/analyze.py` | Scores the replies and computes the validity check, H1 and H2 |
-| `study/simulate.py` | Runs the analysis on simulated models to check the decision rule |
+| `study/analyze.py` | Scores the replies and compares every variation with the original (bootstrap intervals, H1 and H2) |
 | `study/test_*.py` | Tests |
 | `data/` | Items, queries, replies and results: `main/` and the final `pilot/` (see `data/README.md`) |
 | `checks/` | Checks behind numbers in the thesis: the stimuli (`stimuli.py`) and Qwen's reasoning effort (`qwen-effort.py`) |
@@ -48,7 +50,7 @@ Replace `main` with `pilot` for the final pilot.
 
 ## Settings
 
-The request settings are in `study/query.py`. The thesis's appendix (Implementation details)
+The request settings are in `study/query.py`. The thesis's Study Design chapter (Models and settings)
 explains them, and how we checked that each model received the image unresized and that Qwen
 honored its reasoning effort.
 

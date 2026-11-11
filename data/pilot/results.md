@@ -1,110 +1,158 @@
 # Results: pilot
 
-60 items. Intervals are 95%; margin 5 pp.
+60 drawings. Differences are in percentage points (pp). Each has a 95% interval and one corrected for the set's 84 comparisons (models x task sets x distances x measures = 4 x 1 x 7 x 3): percentile intervals of 100,000 resamples of the drawings. Decisions use the corrected interval; the margin for answer change is 5 pp.
 
 ## Claude Opus 5.5
 
 Output tokens per reply, reasoning included: mean 87, median 68.
 
-### Validity check
+Answers changed on the repeat: 0.0% (mean over tasks).
 
-| Task | Accuracy, original | Bar | Gain over no image | Invalid without image | Passes |
+### Baseline check
+
+| Task | Accuracy, original | Accuracy, no image | Gain (95% interval) | Bar | Invalid without image |
 | --- | --- | --- | --- | --- | --- |
-| T1 | 100.0% [83.9%, 100.0%], n = 20 | 50.0% | 100.0% [67.8%, 100.0%], n = 20 | 20 of 20 | yes |
-| T2 | 100.0% [83.9%, 100.0%], n = 20 | 20.0% | 100.0% [67.8%, 100.0%], n = 20 | 20 of 20 | yes |
-| T3 | 100.0% [83.9%, 100.0%], n = 20 | 55.0% | 100.0% [67.8%, 100.0%], n = 20 | 20 of 20 | yes |
+| T1 | 100.0% | 0.0% | 100.0 [100.0, 100.0], n = 20 | 50.0% | 20 of 20 |
+| T2 | 100.0% | 0.0% | 100.0 [100.0, 100.0], n = 20 | 20.0% | 20 of 20 |
+| T3 | 100.0% | 0.0% | 100.0 [100.0, 100.0], n = 20 | 55.0% | 20 of 20 |
 
 Invalid includes refusals: without the image, some models decline to answer, and that counts as wrong.
 
-### H1: inconclusive at reassigned
+### Color tasks (T1, T2, T3)
 
-### H2: inconclusive at reassigned
-
-### The 10-unit recommendation: undetermined
-
-The published design recommendation keeps categorical colors at least 10 CIEDE2000 units apart.
-
-### By color distance
-
-Means of the T1 to T3 values, for description; the verdicts use the intervals per task, below.
-
-| Recoloring | Excess flips | Edit loss | Accuracy, recolored | Accuracy, edited | n, H1 / H2 |
+| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | n |
 | --- | --- | --- | --- | --- | --- |
-| reassigned (52) | 0.0% | 0.0% | 100.0% | 100.0% | 60 / 60 |
-| d20 | 0.0% | 0.0% | 100.0% | 100.0% | 60 / 60 |
-| d14 | 0.0% | 0.0% | 100.0% | 100.0% | 60 / 60 |
-| d10 | 0.0% | 0.0% | 100.0% | 100.0% | 60 / 60 |
-| d7 | 0.0% | 0.0% | 100.0% | 100.0% | 60 / 60 |
-| d5 | 6.7% | 6.7% | 93.3% | 93.3% | 60 / 60 |
-| d3 | 41.7% | 45.0% | 58.3% | 55.0% | 60 / 60 |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
+| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
+| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
+| 7 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
+| 5 | 6.7 | [1.7, 13.3] | [0.0, 20.0] | inconclusive | 60 |
+| 3 | 41.7 | [30.0, 53.3] | [21.7, 61.7] | rejected | 60 |
 
-Answers changed on the repeat, mean over all tasks: 0.0%. n counts the T1 to T3 items with every reply the comparison needs.
+| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | n |
+| --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 7 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 5 | -6.7 | [-13.3, -1.7] | [-20.0, 0.0] | no change | 60 |
+| 3 | -41.7 | [-53.3, -30.0] | [-61.7, -21.7] | drop | 60 |
 
-### Per task
+| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | n |
+| --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 7 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 5 | -6.7 | [-13.3, -1.7] | [-20.0, 0.0] | no change | 60 |
+| 3 | -45.0 | [-56.7, -33.3] | [-65.0, -25.0] | drop | 60 |
 
-95% intervals; these decide the verdicts. A hypothesis is supported at a distance only if every task's interval lies below the margin.
+### T1 alone (descriptive)
 
-| Excess flips | T1 | T2 | T3 |
+| Answer change | Difference (pp) | 95% interval | n |
 | --- | --- | --- | --- |
-| reassigned | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d14 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d10 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d7 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d5 | 5.0% [-11.9%, 23.6%], n = 20 | 15.0% [-3.5%, 36.0%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d3 | 30.0% [9.1%, 51.9%], n = 20 | 70.0% [42.6%, 85.5%], n = 20 | 25.0% [4.9%, 46.9%], n = 20 |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | 0.0 | [0.0, 0.0] | 20 |
+| 5 | 5.0 | [0.0, 15.0] | 20 |
+| 3 | 30.0 | [10.0, 50.0] | 20 |
 
-| Edit loss | T1 | T2 | T3 |
+| Accuracy, recolored | Difference (pp) | 95% interval | n |
 | --- | --- | --- | --- |
-| reassigned | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d14 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d10 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d7 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d5 | 5.0% [-11.9%, 23.6%], n = 20 | 10.0% [-7.7%, 30.1%], n = 20 | 5.0% [-11.9%, 23.6%], n = 20 |
-| d3 | 20.0% [0.7%, 41.6%], n = 20 | 75.0% [46.8%, 88.8%], n = 20 | 40.0% [17.4%, 61.3%], n = 20 |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | 0.0 | [0.0, 0.0] | 20 |
+| 5 | -5.0 | [-15.0, 0.0] | 20 |
+| 3 | -30.0 | [-50.0, -10.0] | 20 |
 
-### Each task alone (descriptive)
-
-| Task | H1 alone | H2 alone |
-| --- | --- | --- |
-| T1 | inconclusive at reassigned | inconclusive at reassigned |
-| T2 | inconclusive at reassigned | inconclusive at reassigned |
-| T3 | inconclusive at reassigned | inconclusive at reassigned |
-
-The verdicts above need every task.
-
-### The sequences under other margins (descriptive)
-
-| Margin | H1 | H2 |
-| --- | --- | --- |
-| 2.5 pp | inconclusive at reassigned | inconclusive at reassigned |
-| 5 pp | inconclusive at reassigned | inconclusive at reassigned |
-| 10 pp | inconclusive at reassigned | inconclusive at reassigned |
-
-### Intervals with a Bonferroni correction over all 42 tests (descriptive)
-
-Each interval at one-sided 0.060% (z = 3.24) instead of 2.5%.
-
-| Excess flips | T1 | T2 | T3 |
+| Accuracy, edited | Difference (pp) | 95% interval | n |
 | --- | --- | --- | --- |
-| reassigned | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d20 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d14 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d10 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d7 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d5 | 5.0% [-31.2%, 40.6%] | 15.0% [-24.6%, 51.2%] | 0.0% [-34.4%, 34.4%] |
-| d3 | 30.0% [-14.8%, 64.6%] | 70.0% [11.5%, 90.9%] | 25.0% [-18.0%, 60.4%] |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | 0.0 | [0.0, 0.0] | 20 |
+| 5 | -5.0 | [-15.0, 0.0] | 20 |
+| 3 | -20.0 | [-40.0, -5.0] | 20 |
 
-| Edit loss | T1 | T2 | T3 |
+### T2 alone (descriptive)
+
+| Answer change | Difference (pp) | 95% interval | n |
 | --- | --- | --- | --- |
-| reassigned | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d20 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d14 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d10 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d7 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d5 | 5.0% [-31.2%, 40.6%] | 10.0% [-27.9%, 46.1%] | 5.0% [-31.2%, 40.6%] |
-| d3 | 20.0% [-21.3%, 56.0%] | 75.0% [14.7%, 93.2%] | 40.0% [-8.2%, 72.4%] |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | 0.0 | [0.0, 0.0] | 20 |
+| 5 | 15.0 | [0.0, 30.0] | 20 |
+| 3 | 70.0 | [50.0, 90.0] | 20 |
+
+| Accuracy, recolored | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | 0.0 | [0.0, 0.0] | 20 |
+| 5 | -15.0 | [-30.0, 0.0] | 20 |
+| 3 | -70.0 | [-90.0, -50.0] | 20 |
+
+| Accuracy, edited | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | 0.0 | [0.0, 0.0] | 20 |
+| 5 | -10.0 | [-25.0, 0.0] | 20 |
+| 3 | -75.0 | [-90.0, -55.0] | 20 |
+
+### T3 alone (descriptive)
+
+| Answer change | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | 0.0 | [0.0, 0.0] | 20 |
+| 5 | 0.0 | [0.0, 0.0] | 20 |
+| 3 | 25.0 | [10.0, 45.0] | 20 |
+
+| Accuracy, recolored | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | 0.0 | [0.0, 0.0] | 20 |
+| 5 | 0.0 | [0.0, 0.0] | 20 |
+| 3 | -25.0 | [-45.0, -10.0] | 20 |
+
+| Accuracy, edited | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | 0.0 | [0.0, 0.0] | 20 |
+| 5 | -5.0 | [-15.0, 0.0] | 20 |
+| 3 | -40.0 | [-60.0, -20.0] | 20 |
+
+### H1 under other margins (descriptive)
+
+| Task set | Margin | 52 (reassigned) | 20 | 14 | 10 | 7 | 5 | 3 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| color tasks | 2.5 pp | supported | supported | supported | supported | supported | inconclusive | rejected |
+| color tasks | 5 pp | supported | supported | supported | supported | supported | inconclusive | rejected |
+| color tasks | 10 pp | supported | supported | supported | supported | supported | inconclusive | rejected |
 
 ### Answers without the image (descriptive)
 
@@ -121,7 +169,7 @@ Each interval at one-sided 0.060% (z = 3.24) instead of 2.5%.
 | with image | 0 | 0 | 0 |
 | without image | 60 | 0 | 0 |
 
-### Yes answers by correct answer on the ladder (descriptive)
+### Yes answers by correct answer on the controlled palettes (descriptive)
 
 | Recoloring | T1, answer yes | T1, answer no | T3, answer yes | T3, answer no |
 | --- | --- | --- | --- | --- |
@@ -134,35 +182,7 @@ Each interval at one-sided 0.060% (z = 3.24) instead of 2.5%.
 
 Cells: share of valid answers that are yes.
 
-### Correct on both drawings of a same-palette pair (descriptive)
-
-95% Wilson intervals.
-
-| Palette | T1 | T2 | T3 |
-| --- | --- | --- | --- |
-| tab10 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 |
-| d20 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 |
-| d14 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 |
-| d10 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 |
-| d7 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 |
-| d5 | 90.0% [69.9%, 97.2%], n = 20 | 80.0% [58.4%, 91.9%], n = 20 | 95.0% [76.4%, 99.1%], n = 20 |
-| d3 | 55.0% [34.2%, 74.2%], n = 20 | 15.0% [5.2%, 36.0%], n = 20 | 35.0% [18.1%, 56.7%], n = 20 |
-
-### H1 excess flips on the items at risk, where reading two colors as one changes the answer (descriptive)
-
-T1 and T3: no items only; T2: all items.
-
-| Recoloring | T1 | T2 | T3 |
-| --- | --- | --- | --- |
-| reassigned | 0.0% [-27.8%, 27.8%], n = 10 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-27.8%, 27.8%], n = 10 |
-| d20 | 0.0% [-27.8%, 27.8%], n = 10 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-27.8%, 27.8%], n = 10 |
-| d14 | 0.0% [-27.8%, 27.8%], n = 10 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-27.8%, 27.8%], n = 10 |
-| d10 | 0.0% [-27.8%, 27.8%], n = 10 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-27.8%, 27.8%], n = 10 |
-| d7 | 0.0% [-27.8%, 27.8%], n = 10 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-27.8%, 27.8%], n = 10 |
-| d5 | 10.0% [-20.5%, 40.4%], n = 10 | 15.0% [-3.5%, 36.0%], n = 20 | 0.0% [-27.8%, 27.8%], n = 10 |
-| d3 | 50.0% [8.4%, 76.3%], n = 10 | 70.0% [42.6%, 85.5%], n = 20 | 50.0% [8.4%, 76.3%], n = 10 |
-
-### Error directions on the ladder (exploratory)
+### Error directions on the controlled palettes (exploratory)
 
 | Recoloring | False yes or overcount | False no or undercount | Invalid |
 | --- | --- | --- | --- |
@@ -197,9 +217,9 @@ T1 and T3: no items only; T2: all items.
 
 Cells: accuracy, then invalid and missing replies.
 
-### Accuracy by hue center (exploratory)
+### Accuracy by base hue (exploratory)
 
-| Hue center | d20 | d14 | d10 | d7 | d5 | d3 |
+| Base hue | d20 | d14 | d10 | d7 | d5 | d3 |
 | --- | --- | --- | --- | --- | --- | --- |
 | 55 | 100.0% | 100.0% | 100.0% | 100.0% | 77.8% | 38.9% |
 | 115 | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 66.7% |
@@ -208,7 +228,7 @@ Cells: accuracy, then invalid and missing replies.
 | 295 | 100.0% | 100.0% | 100.0% | 100.0% | 95.8% | 62.5% |
 | 355 | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 61.1% |
 
-### T2 accuracy by the position of u's color on the ladder (exploratory)
+### T2 accuracy by the position of u's color in the controlled palette (exploratory)
 
 | u's color | d20 | d14 | d10 | d7 | d5 | d3 | Items |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -219,7 +239,7 @@ Each cell pools the recolored and the edited drawing.
 
 ### T1 accuracy by the spatial separation of u and v in the drawing (exploratory)
 
-Drawings where u and v have adjacent, different ladder colors.
+Drawings where u and v have adjacent, different colors of a controlled palette.
 
 | Distance between u and v | d20 | d14 | d10 | d7 | d5 | d3 | Items |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -227,7 +247,7 @@ Drawings where u and v have adjacent, different ladder colors.
 | 328 to 431 px | 100.0% | 100.0% | 100.0% | 100.0% | 83.3% | 83.3% | 6 |
 | 462 to 677 px | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 57.1% | 7 |
 
-### Error analysis on the ladder (exploratory)
+### Accuracy on the controlled palettes by properties of the drawing (exploratory)
 
 | nodes | Accuracy | Items |
 | --- | --- | --- |
@@ -254,7 +274,7 @@ Drawings where u and v have adjacent, different ladder colors.
 | 4 | 94.8% | 8 |
 | 5 | 91.7% | 6 |
 
-### Accuracy on the ladder by output tokens (exploratory)
+### Accuracy on the controlled palettes by output tokens (exploratory)
 
 | Output tokens | Accuracy | Replies |
 | --- | --- | --- |
@@ -263,111 +283,159 @@ Drawings where u and v have adjacent, different ladder colors.
 | 80 to 123 | 95.6% | 180 |
 | 124 to 616 | 76.4% | 182 |
 
-Rows are quartiles of this model's ladder replies; tied token counts share a row.
+Rows are quartiles of this model's replies on the controlled palettes; tied token counts share a row.
 
 ## Gemini 3.8 Flash
 
 Output tokens per reply, reasoning included: mean 668, median 322.
 
-### Validity check
+Answers changed on the repeat: 0.0% (mean over tasks).
 
-| Task | Accuracy, original | Bar | Gain over no image | Invalid without image | Passes |
+### Baseline check
+
+| Task | Accuracy, original | Accuracy, no image | Gain (95% interval) | Bar | Invalid without image |
 | --- | --- | --- | --- | --- | --- |
-| T1 | 100.0% [83.9%, 100.0%], n = 20 | 50.0% | 35.0% [13.2%, 56.7%], n = 20 | 2 of 20 | yes |
-| T2 | 100.0% [83.9%, 100.0%], n = 20 | 20.0% | 90.0% [59.4%, 97.2%], n = 20 | 0 of 20 | yes |
-| T3 | 100.0% [83.9%, 100.0%], n = 20 | 55.0% | 50.0% [25.8%, 70.1%], n = 20 | 0 of 20 | yes |
+| T1 | 100.0% | 65.0% | 35.0 [15.0, 55.0], n = 20 | 50.0% | 2 of 20 |
+| T2 | 100.0% | 10.0% | 90.0 [75.0, 100.0], n = 20 | 20.0% | 0 of 20 |
+| T3 | 100.0% | 50.0% | 50.0 [30.0, 70.0], n = 20 | 55.0% | 0 of 20 |
 
 Invalid includes refusals: without the image, some models decline to answer, and that counts as wrong.
 
-### H1: inconclusive at reassigned
+### Color tasks (T1, T2, T3)
 
-### H2: inconclusive at reassigned
-
-### The 10-unit recommendation: undetermined
-
-The published design recommendation keeps categorical colors at least 10 CIEDE2000 units apart.
-
-### By color distance
-
-Means of the T1 to T3 values, for description; the verdicts use the intervals per task, below.
-
-| Recoloring | Excess flips | Edit loss | Accuracy, recolored | Accuracy, edited | n, H1 / H2 |
+| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | n |
 | --- | --- | --- | --- | --- | --- |
-| reassigned (52) | 0.0% | 0.0% | 100.0% | 100.0% | 60 / 60 |
-| d20 | 0.0% | 0.0% | 100.0% | 100.0% | 60 / 60 |
-| d14 | 1.7% | 0.0% | 98.3% | 100.0% | 60 / 60 |
-| d10 | 6.7% | 6.7% | 93.3% | 93.3% | 60 / 60 |
-| d7 | 30.0% | 23.3% | 70.0% | 76.7% | 60 / 60 |
-| d5 | 41.7% | 41.7% | 58.3% | 58.3% | 60 / 60 |
-| d3 | 66.7% | 66.7% | 33.3% | 33.3% | 60 / 60 |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
+| 14 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | inconclusive | 60 |
+| 10 | 6.7 | [1.7, 13.3] | [0.0, 20.0] | inconclusive | 60 |
+| 7 | 30.0 | [18.3, 41.7] | [11.7, 51.7] | rejected | 60 |
+| 5 | 41.7 | [31.7, 51.7] | [23.3, 60.0] | rejected | 60 |
+| 3 | 66.7 | [56.7, 76.7] | [48.3, 85.0] | rejected | 60 |
 
-Answers changed on the repeat, mean over all tasks: 0.0%. n counts the T1 to T3 items with every reply the comparison needs.
+| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | n |
+| --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 14 | -1.7 | [-5.0, 0.0] | [-10.0, 0.0] | no change | 60 |
+| 10 | -6.7 | [-13.3, -1.7] | [-20.0, 0.0] | no change | 60 |
+| 7 | -30.0 | [-41.7, -18.3] | [-51.7, -11.7] | drop | 60 |
+| 5 | -41.7 | [-51.7, -31.7] | [-60.0, -23.3] | drop | 60 |
+| 3 | -66.7 | [-76.7, -56.7] | [-85.0, -48.3] | drop | 60 |
 
-### Per task
+| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | n |
+| --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 20 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 10 | -6.7 | [-13.3, -1.7] | [-20.0, 0.0] | no change | 60 |
+| 7 | -23.3 | [-33.3, -13.3] | [-41.7, -6.7] | drop | 60 |
+| 5 | -41.7 | [-53.3, -30.0] | [-63.3, -21.7] | drop | 60 |
+| 3 | -66.7 | [-76.7, -56.7] | [-85.0, -48.3] | drop | 60 |
 
-95% intervals; these decide the verdicts. A hypothesis is supported at a distance only if every task's interval lies below the margin.
+### T1 alone (descriptive)
 
-| Excess flips | T1 | T2 | T3 |
+| Answer change | Difference (pp) | 95% interval | n |
 | --- | --- | --- | --- |
-| reassigned | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d14 | 0.0% [-16.1%, 16.1%], n = 20 | 5.0% [-11.9%, 23.6%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d10 | 0.0% [-16.1%, 16.1%], n = 20 | 10.0% [-7.7%, 30.1%], n = 20 | 10.0% [-7.7%, 30.1%], n = 20 |
-| d7 | 15.0% [-3.5%, 36.0%], n = 20 | 45.0% [21.6%, 65.8%], n = 20 | 30.0% [9.1%, 51.9%], n = 20 |
-| d5 | 15.0% [-3.5%, 36.0%], n = 20 | 80.0% [51.0%, 91.9%], n = 20 | 30.0% [9.1%, 51.9%], n = 20 |
-| d3 | 50.0% [25.8%, 70.1%], n = 20 | 100.0% [67.8%, 100.0%], n = 20 | 50.0% [25.8%, 70.1%], n = 20 |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | 15.0 | [0.0, 30.0] | 20 |
+| 5 | 15.0 | [0.0, 30.0] | 20 |
+| 3 | 50.0 | [30.0, 70.0] | 20 |
 
-| Edit loss | T1 | T2 | T3 |
+| Accuracy, recolored | Difference (pp) | 95% interval | n |
 | --- | --- | --- | --- |
-| reassigned | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d14 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d10 | 5.0% [-11.9%, 23.6%], n = 20 | 10.0% [-7.7%, 30.1%], n = 20 | 5.0% [-11.9%, 23.6%], n = 20 |
-| d7 | 10.0% [-7.7%, 30.1%], n = 20 | 45.0% [21.6%, 65.8%], n = 20 | 15.0% [-3.5%, 36.0%], n = 20 |
-| d5 | 30.0% [9.1%, 51.9%], n = 20 | 60.0% [34.2%, 78.1%], n = 20 | 35.0% [13.2%, 56.7%], n = 20 |
-| d3 | 50.0% [25.8%, 70.1%], n = 20 | 100.0% [67.8%, 100.0%], n = 20 | 50.0% [25.8%, 70.1%], n = 20 |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | -15.0 | [-30.0, 0.0] | 20 |
+| 5 | -15.0 | [-30.0, 0.0] | 20 |
+| 3 | -50.0 | [-70.0, -30.0] | 20 |
 
-### Each task alone (descriptive)
-
-| Task | H1 alone | H2 alone |
-| --- | --- | --- |
-| T1 | inconclusive at reassigned | inconclusive at reassigned |
-| T2 | inconclusive at reassigned | inconclusive at reassigned |
-| T3 | inconclusive at reassigned | inconclusive at reassigned |
-
-The verdicts above need every task.
-
-### The sequences under other margins (descriptive)
-
-| Margin | H1 | H2 |
-| --- | --- | --- |
-| 2.5 pp | inconclusive at reassigned | inconclusive at reassigned |
-| 5 pp | inconclusive at reassigned | inconclusive at reassigned |
-| 10 pp | inconclusive at reassigned | inconclusive at reassigned |
-
-### Intervals with a Bonferroni correction over all 42 tests (descriptive)
-
-Each interval at one-sided 0.060% (z = 3.24) instead of 2.5%.
-
-| Excess flips | T1 | T2 | T3 |
+| Accuracy, edited | Difference (pp) | 95% interval | n |
 | --- | --- | --- | --- |
-| reassigned | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d20 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d14 | 0.0% [-34.4%, 34.4%] | 5.0% [-31.2%, 40.6%] | 0.0% [-34.4%, 34.4%] |
-| d10 | 0.0% [-34.4%, 34.4%] | 10.0% [-27.9%, 46.1%] | 10.0% [-27.9%, 46.1%] |
-| d7 | 15.0% [-24.6%, 51.2%] | 45.0% [-4.9%, 76.0%] | 30.0% [-14.8%, 64.6%] |
-| d5 | 15.0% [-24.6%, 51.2%] | 80.0% [18.0%, 95.3%] | 30.0% [-14.8%, 64.6%] |
-| d3 | 50.0% [-1.7%, 79.3%] | 100.0% [31.1%, 100.0%] | 50.0% [-1.7%, 79.3%] |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | -5.0 | [-15.0, 0.0] | 20 |
+| 7 | -10.0 | [-25.0, 0.0] | 20 |
+| 5 | -30.0 | [-50.0, -10.0] | 20 |
+| 3 | -50.0 | [-70.0, -30.0] | 20 |
 
-| Edit loss | T1 | T2 | T3 |
+### T2 alone (descriptive)
+
+| Answer change | Difference (pp) | 95% interval | n |
 | --- | --- | --- | --- |
-| reassigned | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d20 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d14 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d10 | 5.0% [-31.2%, 40.6%] | 10.0% [-27.9%, 46.1%] | 5.0% [-31.2%, 40.6%] |
-| d7 | 10.0% [-27.9%, 46.1%] | 45.0% [-4.9%, 76.0%] | 15.0% [-24.6%, 51.2%] |
-| d5 | 30.0% [-14.8%, 64.6%] | 60.0% [4.9%, 85.5%] | 35.0% [-11.5%, 68.6%] |
-| d3 | 50.0% [-1.7%, 79.3%] | 100.0% [31.1%, 100.0%] | 50.0% [-1.7%, 79.3%] |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 5.0 | [0.0, 15.0] | 20 |
+| 10 | 10.0 | [0.0, 25.0] | 20 |
+| 7 | 45.0 | [25.0, 65.0] | 20 |
+| 5 | 80.0 | [60.0, 95.0] | 20 |
+| 3 | 100.0 | [100.0, 100.0] | 20 |
+
+| Accuracy, recolored | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | -5.0 | [-15.0, 0.0] | 20 |
+| 10 | -10.0 | [-25.0, 0.0] | 20 |
+| 7 | -45.0 | [-65.0, -25.0] | 20 |
+| 5 | -80.0 | [-95.0, -60.0] | 20 |
+| 3 | -100.0 | [-100.0, -100.0] | 20 |
+
+| Accuracy, edited | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | -10.0 | [-25.0, 0.0] | 20 |
+| 7 | -45.0 | [-65.0, -25.0] | 20 |
+| 5 | -60.0 | [-80.0, -40.0] | 20 |
+| 3 | -100.0 | [-100.0, -100.0] | 20 |
+
+### T3 alone (descriptive)
+
+| Answer change | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 10.0 | [0.0, 25.0] | 20 |
+| 7 | 30.0 | [10.0, 50.0] | 20 |
+| 5 | 30.0 | [10.0, 50.0] | 20 |
+| 3 | 50.0 | [30.0, 70.0] | 20 |
+
+| Accuracy, recolored | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | -10.0 | [-25.0, 0.0] | 20 |
+| 7 | -30.0 | [-50.0, -10.0] | 20 |
+| 5 | -30.0 | [-50.0, -10.0] | 20 |
+| 3 | -50.0 | [-70.0, -30.0] | 20 |
+
+| Accuracy, edited | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | -5.0 | [-15.0, 0.0] | 20 |
+| 7 | -15.0 | [-30.0, 0.0] | 20 |
+| 5 | -35.0 | [-55.0, -15.0] | 20 |
+| 3 | -50.0 | [-70.0, -30.0] | 20 |
+
+### H1 under other margins (descriptive)
+
+| Task set | Margin | 52 (reassigned) | 20 | 14 | 10 | 7 | 5 | 3 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| color tasks | 2.5 pp | supported | supported | inconclusive | inconclusive | rejected | rejected | rejected |
+| color tasks | 5 pp | supported | supported | inconclusive | inconclusive | rejected | rejected | rejected |
+| color tasks | 10 pp | supported | supported | inconclusive | inconclusive | rejected | rejected | rejected |
 
 ### Answers without the image (descriptive)
 
@@ -384,7 +452,7 @@ Each interval at one-sided 0.060% (z = 3.24) instead of 2.5%.
 | with image | 2 | 0 | 0 |
 | without image | 2 | 0 | 0 |
 
-### Yes answers by correct answer on the ladder (descriptive)
+### Yes answers by correct answer on the controlled palettes (descriptive)
 
 | Recoloring | T1, answer yes | T1, answer no | T3, answer yes | T3, answer no |
 | --- | --- | --- | --- | --- |
@@ -397,35 +465,7 @@ Each interval at one-sided 0.060% (z = 3.24) instead of 2.5%.
 
 Cells: share of valid answers that are yes.
 
-### Correct on both drawings of a same-palette pair (descriptive)
-
-95% Wilson intervals.
-
-| Palette | T1 | T2 | T3 |
-| --- | --- | --- | --- |
-| tab10 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 |
-| d20 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 |
-| d14 | 100.0% [83.9%, 100.0%], n = 20 | 95.0% [76.4%, 99.1%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 |
-| d10 | 95.0% [76.4%, 99.1%], n = 20 | 90.0% [69.9%, 97.2%], n = 20 | 85.0% [64.0%, 94.8%], n = 20 |
-| d7 | 75.0% [53.1%, 88.8%], n = 20 | 50.0% [29.9%, 70.1%], n = 20 | 55.0% [34.2%, 74.2%], n = 20 |
-| d5 | 60.0% [38.7%, 78.1%], n = 20 | 15.0% [5.2%, 36.0%], n = 20 | 45.0% [25.8%, 65.8%], n = 20 |
-| d3 | 0.0% [-0.0%, 16.1%], n = 20 | 0.0% [-0.0%, 16.1%], n = 20 | 0.0% [-0.0%, 16.1%], n = 20 |
-
-### H1 excess flips on the items at risk, where reading two colors as one changes the answer (descriptive)
-
-T1 and T3: no items only; T2: all items.
-
-| Recoloring | T1 | T2 | T3 |
-| --- | --- | --- | --- |
-| reassigned | 0.0% [-27.8%, 27.8%], n = 10 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-27.8%, 27.8%], n = 10 |
-| d20 | 0.0% [-27.8%, 27.8%], n = 10 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-27.8%, 27.8%], n = 10 |
-| d14 | 0.0% [-27.8%, 27.8%], n = 10 | 5.0% [-11.9%, 23.6%], n = 20 | 0.0% [-27.8%, 27.8%], n = 10 |
-| d10 | 0.0% [-27.8%, 27.8%], n = 10 | 10.0% [-7.7%, 30.1%], n = 20 | 20.0% [-13.3%, 51.0%], n = 10 |
-| d7 | 30.0% [-6.1%, 60.3%], n = 10 | 45.0% [21.6%, 65.8%], n = 20 | 60.0% [15.6%, 83.2%], n = 10 |
-| d5 | 30.0% [-6.1%, 60.3%], n = 10 | 80.0% [51.0%, 91.9%], n = 20 | 60.0% [15.6%, 83.2%], n = 10 |
-| d3 | 100.0% [44.5%, 100.0%], n = 10 | 100.0% [67.8%, 100.0%], n = 20 | 100.0% [44.5%, 100.0%], n = 10 |
-
-### Error directions on the ladder (exploratory)
+### Error directions on the controlled palettes (exploratory)
 
 | Recoloring | False yes or overcount | False no or undercount | Invalid |
 | --- | --- | --- | --- |
@@ -460,9 +500,9 @@ T1 and T3: no items only; T2: all items.
 
 Cells: accuracy, then invalid and missing replies.
 
-### Accuracy by hue center (exploratory)
+### Accuracy by base hue (exploratory)
 
-| Hue center | d20 | d14 | d10 | d7 | d5 | d3 |
+| Base hue | d20 | d14 | d10 | d7 | d5 | d3 |
 | --- | --- | --- | --- | --- | --- | --- |
 | 55 | 100.0% | 100.0% | 100.0% | 66.7% | 55.6% | 33.3% |
 | 115 | 100.0% | 100.0% | 100.0% | 83.3% | 66.7% | 33.3% |
@@ -471,7 +511,7 @@ Cells: accuracy, then invalid and missing replies.
 | 295 | 100.0% | 100.0% | 100.0% | 79.2% | 54.2% | 33.3% |
 | 355 | 100.0% | 100.0% | 100.0% | 94.4% | 72.2% | 33.3% |
 
-### T2 accuracy by the position of u's color on the ladder (exploratory)
+### T2 accuracy by the position of u's color in the controlled palette (exploratory)
 
 | u's color | d20 | d14 | d10 | d7 | d5 | d3 | Items |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -482,7 +522,7 @@ Each cell pools the recolored and the edited drawing.
 
 ### T1 accuracy by the spatial separation of u and v in the drawing (exploratory)
 
-Drawings where u and v have adjacent, different ladder colors.
+Drawings where u and v have adjacent, different colors of a controlled palette.
 
 | Distance between u and v | d20 | d14 | d10 | d7 | d5 | d3 | Items |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -490,7 +530,7 @@ Drawings where u and v have adjacent, different ladder colors.
 | 328 to 431 px | 100.0% | 100.0% | 100.0% | 83.3% | 100.0% | 0.0% | 6 |
 | 462 to 677 px | 100.0% | 100.0% | 100.0% | 71.4% | 42.9% | 0.0% | 7 |
 
-### Error analysis on the ladder (exploratory)
+### Accuracy on the controlled palettes by properties of the drawing (exploratory)
 
 | nodes | Accuracy | Items |
 | --- | --- | --- |
@@ -517,7 +557,7 @@ Drawings where u and v have adjacent, different ladder colors.
 | 4 | 79.2% | 8 |
 | 5 | 83.3% | 6 |
 
-### Accuracy on the ladder by output tokens (exploratory)
+### Accuracy on the controlled palettes by output tokens (exploratory)
 
 | Output tokens | Accuracy | Replies |
 | --- | --- | --- |
@@ -526,111 +566,159 @@ Drawings where u and v have adjacent, different ladder colors.
 | 396 to 705 | 83.5% | 182 |
 | 706 to 9519 | 67.8% | 180 |
 
-Rows are quartiles of this model's ladder replies; tied token counts share a row.
+Rows are quartiles of this model's replies on the controlled palettes; tied token counts share a row.
 
 ## GPT-6.1 Sol
 
 Output tokens per reply, reasoning included: mean 30, median 22.
 
-### Validity check
+Answers changed on the repeat: 1.7% (mean over tasks).
 
-| Task | Accuracy, original | Bar | Gain over no image | Invalid without image | Passes |
+### Baseline check
+
+| Task | Accuracy, original | Accuracy, no image | Gain (95% interval) | Bar | Invalid without image |
 | --- | --- | --- | --- | --- | --- |
-| T1 | 100.0% [83.9%, 100.0%], n = 20 | 50.0% | 35.0% [13.2%, 56.7%], n = 20 | 0 of 20 | yes |
-| T2 | 95.0% [76.4%, 99.1%], n = 20 | 20.0% | 95.0% [63.6%, 99.1%], n = 20 | 20 of 20 | yes |
-| T3 | 100.0% [83.9%, 100.0%], n = 20 | 55.0% | 45.0% [21.6%, 65.8%], n = 20 | 3 of 20 | yes |
+| T1 | 100.0% | 65.0% | 35.0 [15.0, 55.0], n = 20 | 50.0% | 0 of 20 |
+| T2 | 95.0% | 0.0% | 95.0 [85.0, 100.0], n = 20 | 20.0% | 20 of 20 |
+| T3 | 100.0% | 55.0% | 45.0 [25.0, 65.0], n = 20 | 55.0% | 3 of 20 |
 
 Invalid includes refusals: without the image, some models decline to answer, and that counts as wrong.
 
-### H1: inconclusive at reassigned
+### Color tasks (T1, T2, T3)
 
-### H2: inconclusive at reassigned
-
-### The 10-unit recommendation: undetermined
-
-The published design recommendation keeps categorical colors at least 10 CIEDE2000 units apart.
-
-### By color distance
-
-Means of the T1 to T3 values, for description; the verdicts use the intervals per task, below.
-
-| Recoloring | Excess flips | Edit loss | Accuracy, recolored | Accuracy, edited | n, H1 / H2 |
+| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | n |
 | --- | --- | --- | --- | --- | --- |
-| reassigned (52) | 0.0% | 0.0% | 100.0% | 100.0% | 60 / 60 |
-| d20 | 1.7% | 0.0% | 98.3% | 100.0% | 60 / 60 |
-| d14 | 0.0% | 0.0% | 100.0% | 100.0% | 60 / 60 |
-| d10 | 0.0% | 3.3% | 100.0% | 96.7% | 60 / 60 |
-| d7 | 3.3% | 3.3% | 96.7% | 95.0% | 60 / 60 |
-| d5 | 11.7% | 15.0% | 88.3% | 83.3% | 60 / 60 |
-| d3 | 40.0% | 41.7% | 58.3% | 58.3% | 60 / 60 |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
+| 20 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | inconclusive | 60 |
+| 14 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
+| 10 | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
+| 7 | 3.3 | [0.0, 8.3] | [0.0, 13.3] | inconclusive | 60 |
+| 5 | 11.7 | [5.0, 20.0] | [0.0, 26.7] | inconclusive | 60 |
+| 3 | 40.0 | [28.3, 51.7] | [20.0, 60.0] | rejected | 60 |
 
-Answers changed on the repeat, mean over all tasks: 1.7%. n counts the T1 to T3 items with every reply the comparison needs.
+| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | n |
+| --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 60 |
+| 20 | 0.0 | [-5.0, 5.0] | [-8.3, 8.3] | no change | 60 |
+| 14 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 60 |
+| 10 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 60 |
+| 7 | -1.7 | [-6.7, 3.3] | [-11.7, 8.3] | no change | 60 |
+| 5 | -10.0 | [-18.3, -1.7] | [-26.7, 3.3] | no change | 60 |
+| 3 | -40.0 | [-51.7, -28.3] | [-60.0, -20.0] | drop | 60 |
 
-### Per task
+| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | n |
+| --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 60 |
+| 20 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 60 |
+| 14 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | no change | 60 |
+| 10 | -1.7 | [-6.7, 3.3] | [-13.3, 8.3] | no change | 60 |
+| 7 | -3.3 | [-8.3, 0.0] | [-13.3, 0.0] | no change | 60 |
+| 5 | -15.0 | [-23.3, -6.7] | [-31.7, -1.7] | drop | 60 |
+| 3 | -40.0 | [-53.3, -26.7] | [-61.7, -16.7] | drop | 60 |
 
-95% intervals; these decide the verdicts. A hypothesis is supported at a distance only if every task's interval lies below the margin.
+### T1 alone (descriptive)
 
-| Excess flips | T1 | T2 | T3 |
+| Answer change | Difference (pp) | 95% interval | n |
 | --- | --- | --- | --- |
-| reassigned | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d20 | 0.0% [-16.1%, 16.1%], n = 20 | 5.0% [-11.9%, 23.6%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d14 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d10 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d7 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 10.0% [-7.7%, 30.1%], n = 20 |
-| d5 | 5.0% [-11.9%, 23.6%], n = 20 | 15.0% [-3.5%, 36.0%], n = 20 | 15.0% [-3.5%, 36.0%], n = 20 |
-| d3 | 30.0% [9.1%, 51.9%], n = 20 | 65.0% [38.4%, 81.9%], n = 20 | 25.0% [4.9%, 46.9%], n = 20 |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | 0.0 | [0.0, 0.0] | 20 |
+| 5 | 5.0 | [0.0, 15.0] | 20 |
+| 3 | 30.0 | [10.0, 50.0] | 20 |
 
-| Edit loss | T1 | T2 | T3 |
+| Accuracy, recolored | Difference (pp) | 95% interval | n |
 | --- | --- | --- | --- |
-| reassigned | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d14 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d10 | 0.0% [-16.1%, 16.1%], n = 20 | 5.0% [-11.9%, 23.6%], n = 20 | 5.0% [-11.9%, 23.6%], n = 20 |
-| d7 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 10.0% [-7.7%, 30.1%], n = 20 |
-| d5 | 0.0% [-16.1%, 16.1%], n = 20 | 30.0% [9.1%, 51.9%], n = 20 | 15.0% [-3.5%, 36.0%], n = 20 |
-| d3 | 30.0% [9.1%, 51.9%], n = 20 | 55.0% [30.0%, 74.2%], n = 20 | 40.0% [17.4%, 61.3%], n = 20 |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | 0.0 | [0.0, 0.0] | 20 |
+| 5 | -5.0 | [-15.0, 0.0] | 20 |
+| 3 | -30.0 | [-50.0, -10.0] | 20 |
 
-### Each task alone (descriptive)
-
-| Task | H1 alone | H2 alone |
-| --- | --- | --- |
-| T1 | inconclusive at reassigned | inconclusive at reassigned |
-| T2 | inconclusive at reassigned | inconclusive at reassigned |
-| T3 | inconclusive at reassigned | inconclusive at reassigned |
-
-The verdicts above need every task.
-
-### The sequences under other margins (descriptive)
-
-| Margin | H1 | H2 |
-| --- | --- | --- |
-| 2.5 pp | inconclusive at reassigned | inconclusive at reassigned |
-| 5 pp | inconclusive at reassigned | inconclusive at reassigned |
-| 10 pp | inconclusive at reassigned | inconclusive at reassigned |
-
-### Intervals with a Bonferroni correction over all 42 tests (descriptive)
-
-Each interval at one-sided 0.060% (z = 3.24) instead of 2.5%.
-
-| Excess flips | T1 | T2 | T3 |
+| Accuracy, edited | Difference (pp) | 95% interval | n |
 | --- | --- | --- | --- |
-| reassigned | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d20 | 0.0% [-34.4%, 34.4%] | 5.0% [-31.2%, 40.6%] | 0.0% [-34.4%, 34.4%] |
-| d14 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d10 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d7 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 10.0% [-27.9%, 46.1%] |
-| d5 | 5.0% [-31.2%, 40.6%] | 15.0% [-24.6%, 51.2%] | 15.0% [-24.6%, 51.2%] |
-| d3 | 30.0% [-14.8%, 64.6%] | 65.0% [8.2%, 88.3%] | 25.0% [-18.0%, 60.4%] |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | 0.0 | [0.0, 0.0] | 20 |
+| 5 | 0.0 | [0.0, 0.0] | 20 |
+| 3 | -30.0 | [-50.0, -10.0] | 20 |
 
-| Edit loss | T1 | T2 | T3 |
+### T2 alone (descriptive)
+
+| Answer change | Difference (pp) | 95% interval | n |
 | --- | --- | --- | --- |
-| reassigned | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d20 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d14 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d10 | 0.0% [-34.4%, 34.4%] | 5.0% [-31.2%, 40.6%] | 5.0% [-31.2%, 40.6%] |
-| d7 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 10.0% [-27.9%, 46.1%] |
-| d5 | 0.0% [-34.4%, 34.4%] | 30.0% [-14.8%, 64.6%] | 15.0% [-24.6%, 51.2%] |
-| d3 | 30.0% [-14.8%, 64.6%] | 55.0% [1.6%, 82.5%] | 40.0% [-8.2%, 72.4%] |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 5.0 | [0.0, 15.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | 0.0 | [0.0, 0.0] | 20 |
+| 5 | 15.0 | [0.0, 30.0] | 20 |
+| 3 | 65.0 | [45.0, 85.0] | 20 |
+
+| Accuracy, recolored | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 5.0 | [0.0, 15.0] | 20 |
+| 20 | 0.0 | [-15.0, 15.0] | 20 |
+| 14 | 5.0 | [0.0, 15.0] | 20 |
+| 10 | 5.0 | [0.0, 15.0] | 20 |
+| 7 | 5.0 | [0.0, 15.0] | 20 |
+| 5 | -10.0 | [-30.0, 10.0] | 20 |
+| 3 | -65.0 | [-85.0, -45.0] | 20 |
+
+| Accuracy, edited | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 5.0 | [0.0, 15.0] | 20 |
+| 20 | 5.0 | [0.0, 15.0] | 20 |
+| 14 | 5.0 | [0.0, 15.0] | 20 |
+| 10 | 0.0 | [-15.0, 15.0] | 20 |
+| 7 | 0.0 | [0.0, 0.0] | 20 |
+| 5 | -30.0 | [-50.0, -10.0] | 20 |
+| 3 | -50.0 | [-75.0, -25.0] | 20 |
+
+### T3 alone (descriptive)
+
+| Answer change | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | 10.0 | [0.0, 25.0] | 20 |
+| 5 | 15.0 | [0.0, 30.0] | 20 |
+| 3 | 25.0 | [10.0, 45.0] | 20 |
+
+| Accuracy, recolored | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 0.0 | [0.0, 0.0] | 20 |
+| 7 | -10.0 | [-25.0, 0.0] | 20 |
+| 5 | -15.0 | [-30.0, 0.0] | 20 |
+| 3 | -25.0 | [-45.0, -10.0] | 20 |
+
+| Accuracy, edited | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | -5.0 | [-15.0, 0.0] | 20 |
+| 7 | -10.0 | [-25.0, 0.0] | 20 |
+| 5 | -15.0 | [-30.0, 0.0] | 20 |
+| 3 | -40.0 | [-60.0, -20.0] | 20 |
+
+### H1 under other margins (descriptive)
+
+| Task set | Margin | 52 (reassigned) | 20 | 14 | 10 | 7 | 5 | 3 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| color tasks | 2.5 pp | supported | inconclusive | supported | supported | inconclusive | inconclusive | rejected |
+| color tasks | 5 pp | supported | inconclusive | supported | supported | inconclusive | inconclusive | rejected |
+| color tasks | 10 pp | supported | inconclusive | supported | supported | inconclusive | inconclusive | rejected |
 
 ### Answers without the image (descriptive)
 
@@ -647,7 +735,7 @@ Each interval at one-sided 0.060% (z = 3.24) instead of 2.5%.
 | with image | 0 | 0 | 0 |
 | without image | 23 | 0 | 0 |
 
-### Yes answers by correct answer on the ladder (descriptive)
+### Yes answers by correct answer on the controlled palettes (descriptive)
 
 | Recoloring | T1, answer yes | T1, answer no | T3, answer yes | T3, answer no |
 | --- | --- | --- | --- | --- |
@@ -660,35 +748,7 @@ Each interval at one-sided 0.060% (z = 3.24) instead of 2.5%.
 
 Cells: share of valid answers that are yes.
 
-### Correct on both drawings of a same-palette pair (descriptive)
-
-95% Wilson intervals.
-
-| Palette | T1 | T2 | T3 |
-| --- | --- | --- | --- |
-| tab10 | 100.0% [83.9%, 100.0%], n = 20 | 95.0% [76.4%, 99.1%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 |
-| d20 | 100.0% [83.9%, 100.0%], n = 20 | 95.0% [76.4%, 99.1%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 |
-| d14 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 |
-| d10 | 100.0% [83.9%, 100.0%], n = 20 | 95.0% [76.4%, 99.1%], n = 20 | 95.0% [76.4%, 99.1%], n = 20 |
-| d7 | 100.0% [83.9%, 100.0%], n = 20 | 95.0% [76.4%, 99.1%], n = 20 | 80.0% [58.4%, 91.9%], n = 20 |
-| d5 | 95.0% [76.4%, 99.1%], n = 20 | 65.0% [43.3%, 81.9%], n = 20 | 70.0% [48.1%, 85.5%], n = 20 |
-| d3 | 40.0% [21.9%, 61.3%], n = 20 | 25.0% [11.2%, 46.9%], n = 20 | 35.0% [18.1%, 56.7%], n = 20 |
-
-### H1 excess flips on the items at risk, where reading two colors as one changes the answer (descriptive)
-
-T1 and T3: no items only; T2: all items.
-
-| Recoloring | T1 | T2 | T3 |
-| --- | --- | --- | --- |
-| reassigned | 0.0% [-27.8%, 27.8%], n = 10 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-27.8%, 27.8%], n = 10 |
-| d20 | 0.0% [-27.8%, 27.8%], n = 10 | 5.0% [-11.9%, 23.6%], n = 20 | 0.0% [-27.8%, 27.8%], n = 10 |
-| d14 | 0.0% [-27.8%, 27.8%], n = 10 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-27.8%, 27.8%], n = 10 |
-| d10 | 0.0% [-27.8%, 27.8%], n = 10 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-27.8%, 27.8%], n = 10 |
-| d7 | 0.0% [-27.8%, 27.8%], n = 10 | 0.0% [-16.1%, 16.1%], n = 20 | 20.0% [-13.3%, 51.0%], n = 10 |
-| d5 | 10.0% [-20.5%, 40.4%], n = 10 | 15.0% [-3.5%, 36.0%], n = 20 | 30.0% [-6.1%, 60.3%], n = 10 |
-| d3 | 60.0% [15.6%, 83.2%], n = 10 | 65.0% [38.4%, 81.9%], n = 20 | 50.0% [8.4%, 76.3%], n = 10 |
-
-### Error directions on the ladder (exploratory)
+### Error directions on the controlled palettes (exploratory)
 
 | Recoloring | False yes or overcount | False no or undercount | Invalid |
 | --- | --- | --- | --- |
@@ -723,9 +783,9 @@ T1 and T3: no items only; T2: all items.
 
 Cells: accuracy, then invalid and missing replies.
 
-### Accuracy by hue center (exploratory)
+### Accuracy by base hue (exploratory)
 
-| Hue center | d20 | d14 | d10 | d7 | d5 | d3 |
+| Base hue | d20 | d14 | d10 | d7 | d5 | d3 |
 | --- | --- | --- | --- | --- | --- | --- |
 | 55 | 100.0% | 100.0% | 100.0% | 94.4% | 94.4% | 55.6% |
 | 115 | 100.0% | 100.0% | 100.0% | 100.0% | 83.3% | 77.8% |
@@ -734,7 +794,7 @@ Cells: accuracy, then invalid and missing replies.
 | 295 | 100.0% | 100.0% | 100.0% | 100.0% | 95.8% | 58.3% |
 | 355 | 94.4% | 100.0% | 94.4% | 94.4% | 77.8% | 38.9% |
 
-### T2 accuracy by the position of u's color on the ladder (exploratory)
+### T2 accuracy by the position of u's color in the controlled palette (exploratory)
 
 | u's color | d20 | d14 | d10 | d7 | d5 | d3 | Items |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -745,7 +805,7 @@ Each cell pools the recolored and the edited drawing.
 
 ### T1 accuracy by the spatial separation of u and v in the drawing (exploratory)
 
-Drawings where u and v have adjacent, different ladder colors.
+Drawings where u and v have adjacent, different colors of a controlled palette.
 
 | Distance between u and v | d20 | d14 | d10 | d7 | d5 | d3 | Items |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -753,7 +813,7 @@ Drawings where u and v have adjacent, different ladder colors.
 | 328 to 431 px | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 50.0% | 6 |
 | 462 to 677 px | 100.0% | 100.0% | 100.0% | 100.0% | 85.7% | 28.6% | 7 |
 
-### Error analysis on the ladder (exploratory)
+### Accuracy on the controlled palettes by properties of the drawing (exploratory)
 
 | nodes | Accuracy | Items |
 | --- | --- | --- |
@@ -780,7 +840,7 @@ Drawings where u and v have adjacent, different ladder colors.
 | 4 | 92.7% | 8 |
 | 5 | 93.1% | 6 |
 
-### Accuracy on the ladder by output tokens (exploratory)
+### Accuracy on the controlled palettes by output tokens (exploratory)
 
 | Output tokens | Accuracy | Replies |
 | --- | --- | --- |
@@ -788,111 +848,159 @@ Drawings where u and v have adjacent, different ladder colors.
 | 23 to 33 | 89.5% | 171 |
 | 34 to 275 | 82.1% | 190 |
 
-Rows are quartiles of this model's ladder replies; tied token counts share a row.
+Rows are quartiles of this model's replies on the controlled palettes; tied token counts share a row.
 
 ## Qwen3.8-27B
 
 Output tokens per reply, reasoning included: mean 365, median 303.
 
-### Validity check
+Answers changed on the repeat: 0.0% (mean over tasks).
 
-| Task | Accuracy, original | Bar | Gain over no image | Invalid without image | Passes |
+### Baseline check
+
+| Task | Accuracy, original | Accuracy, no image | Gain (95% interval) | Bar | Invalid without image |
 | --- | --- | --- | --- | --- | --- |
-| T1 | 100.0% [83.9%, 100.0%], n = 20 | 50.0% | 40.0% [17.4%, 61.3%], n = 20 | 0 of 20 | yes |
-| T2 | 100.0% [83.9%, 100.0%], n = 20 | 20.0% | 80.0% [51.0%, 91.9%], n = 20 | 2 of 20 | yes |
-| T3 | 100.0% [83.9%, 100.0%], n = 20 | 55.0% | 50.0% [25.8%, 70.1%], n = 20 | 0 of 20 | yes |
+| T1 | 100.0% | 60.0% | 40.0 [20.0, 60.0], n = 20 | 50.0% | 0 of 20 |
+| T2 | 100.0% | 20.0% | 80.0 [60.0, 95.0], n = 20 | 20.0% | 2 of 20 |
+| T3 | 100.0% | 50.0% | 50.0 [30.0, 70.0], n = 20 | 55.0% | 0 of 20 |
 
 Invalid includes refusals: without the image, some models decline to answer, and that counts as wrong.
 
-### H1: inconclusive at reassigned
+### Color tasks (T1, T2, T3)
 
-### H2: inconclusive at reassigned
-
-### The 10-unit recommendation: undetermined
-
-The published design recommendation keeps categorical colors at least 10 CIEDE2000 units apart.
-
-### By color distance
-
-Means of the T1 to T3 values, for description; the verdicts use the intervals per task, below.
-
-| Recoloring | Excess flips | Edit loss | Accuracy, recolored | Accuracy, edited | n, H1 / H2 |
+| Answer change | Difference (pp) | 95% interval | Corrected interval | Decision | n |
 | --- | --- | --- | --- | --- | --- |
-| reassigned (52) | 0.0% | 0.0% | 100.0% | 100.0% | 60 / 60 |
-| d20 | 1.7% | 1.7% | 98.3% | 98.3% | 60 / 60 |
-| d14 | 5.0% | 6.7% | 95.0% | 93.3% | 60 / 60 |
-| d10 | 20.0% | 18.3% | 80.0% | 81.7% | 60 / 60 |
-| d7 | 36.7% | 28.3% | 63.3% | 71.7% | 60 / 60 |
-| d5 | 43.3% | 60.0% | 56.7% | 40.0% | 60 / 60 |
-| d3 | 58.3% | 61.7% | 41.7% | 38.3% | 60 / 60 |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | supported | 60 |
+| 20 | 1.7 | [0.0, 5.0] | [0.0, 10.0] | inconclusive | 60 |
+| 14 | 5.0 | [0.0, 11.7] | [0.0, 16.7] | inconclusive | 60 |
+| 10 | 20.0 | [10.0, 30.0] | [5.0, 38.3] | inconclusive | 60 |
+| 7 | 36.7 | [25.0, 48.3] | [16.7, 56.7] | rejected | 60 |
+| 5 | 43.3 | [31.7, 55.0] | [23.3, 61.7] | rejected | 60 |
+| 3 | 58.3 | [46.7, 70.0] | [38.3, 78.3] | rejected | 60 |
 
-Answers changed on the repeat, mean over all tasks: 0.0%. n counts the T1 to T3 items with every reply the comparison needs.
+| Accuracy, recolored | Difference (pp) | 95% interval | Corrected interval | Decision | n |
+| --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 20 | -1.7 | [-5.0, 0.0] | [-10.0, 0.0] | no change | 60 |
+| 14 | -5.0 | [-11.7, 0.0] | [-16.7, 0.0] | no change | 60 |
+| 10 | -20.0 | [-30.0, -10.0] | [-38.3, -5.0] | drop | 60 |
+| 7 | -36.7 | [-48.3, -25.0] | [-56.7, -16.7] | drop | 60 |
+| 5 | -43.3 | [-55.0, -31.7] | [-61.7, -23.3] | drop | 60 |
+| 3 | -58.3 | [-70.0, -46.7] | [-78.3, -38.3] | drop | 60 |
 
-### Per task
+| Accuracy, edited | Difference (pp) | 95% interval | Corrected interval | Decision | n |
+| --- | --- | --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | [0.0, 0.0] | no change | 60 |
+| 20 | -1.7 | [-5.0, 0.0] | [-8.3, 0.0] | no change | 60 |
+| 14 | -6.7 | [-13.3, -1.7] | [-20.0, 0.0] | no change | 60 |
+| 10 | -18.3 | [-28.3, -8.3] | [-36.7, -3.3] | drop | 60 |
+| 7 | -28.3 | [-40.0, -16.7] | [-50.0, -10.0] | drop | 60 |
+| 5 | -60.0 | [-71.7, -48.3] | [-78.3, -40.0] | drop | 60 |
+| 3 | -61.7 | [-71.7, -51.7] | [-80.0, -43.3] | drop | 60 |
 
-95% intervals; these decide the verdicts. A hypothesis is supported at a distance only if every task's interval lies below the margin.
+### T1 alone (descriptive)
 
-| Excess flips | T1 | T2 | T3 |
+| Answer change | Difference (pp) | 95% interval | n |
 | --- | --- | --- | --- |
-| reassigned | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 5.0% [-11.9%, 23.6%], n = 20 |
-| d14 | 5.0% [-11.9%, 23.6%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 10.0% [-7.7%, 30.1%], n = 20 |
-| d10 | 15.0% [-3.5%, 36.0%], n = 20 | 25.0% [4.9%, 46.9%], n = 20 | 20.0% [0.7%, 41.6%], n = 20 |
-| d7 | 20.0% [0.7%, 41.6%], n = 20 | 55.0% [30.0%, 74.2%], n = 20 | 35.0% [13.2%, 56.7%], n = 20 |
-| d5 | 10.0% [-7.7%, 30.1%], n = 20 | 65.0% [38.4%, 81.9%], n = 20 | 55.0% [30.0%, 74.2%], n = 20 |
-| d3 | 45.0% [21.6%, 65.8%], n = 20 | 85.0% [55.2%, 94.8%], n = 20 | 45.0% [21.6%, 65.8%], n = 20 |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 5.0 | [0.0, 15.0] | 20 |
+| 10 | 15.0 | [0.0, 30.0] | 20 |
+| 7 | 20.0 | [5.0, 40.0] | 20 |
+| 5 | 10.0 | [0.0, 25.0] | 20 |
+| 3 | 45.0 | [25.0, 65.0] | 20 |
 
-| Edit loss | T1 | T2 | T3 |
+| Accuracy, recolored | Difference (pp) | 95% interval | n |
 | --- | --- | --- | --- |
-| reassigned | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 |
-| d20 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-16.1%, 16.1%], n = 20 | 5.0% [-11.9%, 23.6%], n = 20 |
-| d14 | 5.0% [-11.9%, 23.6%], n = 20 | 10.0% [-7.7%, 30.1%], n = 20 | 5.0% [-11.9%, 23.6%], n = 20 |
-| d10 | 15.0% [-3.5%, 36.0%], n = 20 | 25.0% [4.9%, 46.9%], n = 20 | 15.0% [-3.5%, 36.0%], n = 20 |
-| d7 | 20.0% [0.7%, 41.6%], n = 20 | 40.0% [17.4%, 61.3%], n = 20 | 25.0% [4.9%, 46.9%], n = 20 |
-| d5 | 45.0% [21.6%, 65.8%], n = 20 | 90.0% [59.4%, 97.2%], n = 20 | 45.0% [21.6%, 65.8%], n = 20 |
-| d3 | 45.0% [21.6%, 65.8%], n = 20 | 95.0% [63.6%, 99.1%], n = 20 | 45.0% [21.6%, 65.8%], n = 20 |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | -5.0 | [-15.0, 0.0] | 20 |
+| 10 | -15.0 | [-30.0, 0.0] | 20 |
+| 7 | -20.0 | [-40.0, -5.0] | 20 |
+| 5 | -10.0 | [-25.0, 0.0] | 20 |
+| 3 | -45.0 | [-65.0, -25.0] | 20 |
 
-### Each task alone (descriptive)
-
-| Task | H1 alone | H2 alone |
-| --- | --- | --- |
-| T1 | inconclusive at reassigned | inconclusive at reassigned |
-| T2 | inconclusive at reassigned | inconclusive at reassigned |
-| T3 | inconclusive at reassigned | inconclusive at reassigned |
-
-The verdicts above need every task.
-
-### The sequences under other margins (descriptive)
-
-| Margin | H1 | H2 |
-| --- | --- | --- |
-| 2.5 pp | inconclusive at reassigned | inconclusive at reassigned |
-| 5 pp | inconclusive at reassigned | inconclusive at reassigned |
-| 10 pp | inconclusive at reassigned | inconclusive at reassigned |
-
-### Intervals with a Bonferroni correction over all 42 tests (descriptive)
-
-Each interval at one-sided 0.060% (z = 3.24) instead of 2.5%.
-
-| Excess flips | T1 | T2 | T3 |
+| Accuracy, edited | Difference (pp) | 95% interval | n |
 | --- | --- | --- | --- |
-| reassigned | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d20 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 5.0% [-31.2%, 40.6%] |
-| d14 | 5.0% [-31.2%, 40.6%] | 0.0% [-34.4%, 34.4%] | 10.0% [-27.9%, 46.1%] |
-| d10 | 15.0% [-24.6%, 51.2%] | 25.0% [-18.0%, 60.4%] | 20.0% [-21.3%, 56.0%] |
-| d7 | 20.0% [-21.3%, 56.0%] | 55.0% [1.6%, 82.5%] | 35.0% [-11.5%, 68.6%] |
-| d5 | 10.0% [-27.9%, 46.1%] | 65.0% [8.2%, 88.3%] | 55.0% [1.6%, 82.5%] |
-| d3 | 45.0% [-4.9%, 76.0%] | 85.0% [21.3%, 97.1%] | 45.0% [-4.9%, 76.0%] |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | -5.0 | [-15.0, 0.0] | 20 |
+| 10 | -15.0 | [-30.0, 0.0] | 20 |
+| 7 | -20.0 | [-40.0, -5.0] | 20 |
+| 5 | -45.0 | [-65.0, -25.0] | 20 |
+| 3 | -45.0 | [-65.0, -25.0] | 20 |
 
-| Edit loss | T1 | T2 | T3 |
+### T2 alone (descriptive)
+
+| Answer change | Difference (pp) | 95% interval | n |
 | --- | --- | --- | --- |
-| reassigned | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] |
-| d20 | 0.0% [-34.4%, 34.4%] | 0.0% [-34.4%, 34.4%] | 5.0% [-31.2%, 40.6%] |
-| d14 | 5.0% [-31.2%, 40.6%] | 10.0% [-27.9%, 46.1%] | 5.0% [-31.2%, 40.6%] |
-| d10 | 15.0% [-24.6%, 51.2%] | 25.0% [-18.0%, 60.4%] | 15.0% [-24.6%, 51.2%] |
-| d7 | 20.0% [-21.3%, 56.0%] | 40.0% [-8.2%, 72.4%] | 25.0% [-18.0%, 60.4%] |
-| d5 | 45.0% [-4.9%, 76.0%] | 90.0% [24.6%, 98.6%] | 45.0% [-4.9%, 76.0%] |
-| d3 | 45.0% [-4.9%, 76.0%] | 95.0% [27.8%, 99.6%] | 45.0% [-4.9%, 76.0%] |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | 25.0 | [5.0, 45.0] | 20 |
+| 7 | 55.0 | [35.0, 75.0] | 20 |
+| 5 | 65.0 | [45.0, 85.0] | 20 |
+| 3 | 85.0 | [70.0, 100.0] | 20 |
+
+| Accuracy, recolored | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | 0.0 | [0.0, 0.0] | 20 |
+| 10 | -25.0 | [-45.0, -5.0] | 20 |
+| 7 | -55.0 | [-75.0, -35.0] | 20 |
+| 5 | -65.0 | [-85.0, -45.0] | 20 |
+| 3 | -85.0 | [-100.0, -70.0] | 20 |
+
+| Accuracy, edited | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 0.0 | [0.0, 0.0] | 20 |
+| 14 | -10.0 | [-25.0, 0.0] | 20 |
+| 10 | -25.0 | [-45.0, -10.0] | 20 |
+| 7 | -40.0 | [-60.0, -20.0] | 20 |
+| 5 | -90.0 | [-100.0, -75.0] | 20 |
+| 3 | -95.0 | [-100.0, -85.0] | 20 |
+
+### T3 alone (descriptive)
+
+| Answer change | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | 5.0 | [0.0, 15.0] | 20 |
+| 14 | 10.0 | [0.0, 25.0] | 20 |
+| 10 | 20.0 | [5.0, 40.0] | 20 |
+| 7 | 35.0 | [15.0, 55.0] | 20 |
+| 5 | 55.0 | [35.0, 75.0] | 20 |
+| 3 | 45.0 | [25.0, 65.0] | 20 |
+
+| Accuracy, recolored | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | -5.0 | [-15.0, 0.0] | 20 |
+| 14 | -10.0 | [-25.0, 0.0] | 20 |
+| 10 | -20.0 | [-40.0, -5.0] | 20 |
+| 7 | -35.0 | [-55.0, -15.0] | 20 |
+| 5 | -55.0 | [-75.0, -35.0] | 20 |
+| 3 | -45.0 | [-65.0, -25.0] | 20 |
+
+| Accuracy, edited | Difference (pp) | 95% interval | n |
+| --- | --- | --- | --- |
+| 52 (reassigned) | 0.0 | [0.0, 0.0] | 20 |
+| 20 | -5.0 | [-15.0, 0.0] | 20 |
+| 14 | -5.0 | [-15.0, 0.0] | 20 |
+| 10 | -15.0 | [-30.0, 0.0] | 20 |
+| 7 | -25.0 | [-45.0, -10.0] | 20 |
+| 5 | -45.0 | [-65.0, -25.0] | 20 |
+| 3 | -45.0 | [-65.0, -25.0] | 20 |
+
+### H1 under other margins (descriptive)
+
+| Task set | Margin | 52 (reassigned) | 20 | 14 | 10 | 7 | 5 | 3 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| color tasks | 2.5 pp | supported | inconclusive | inconclusive | rejected | rejected | rejected | rejected |
+| color tasks | 5 pp | supported | inconclusive | inconclusive | inconclusive | rejected | rejected | rejected |
+| color tasks | 10 pp | supported | inconclusive | inconclusive | inconclusive | rejected | rejected | rejected |
 
 ### Answers without the image (descriptive)
 
@@ -909,7 +1017,7 @@ Each interval at one-sided 0.060% (z = 3.24) instead of 2.5%.
 | with image | 0 | 0 | 0 |
 | without image | 2 | 0 | 0 |
 
-### Yes answers by correct answer on the ladder (descriptive)
+### Yes answers by correct answer on the controlled palettes (descriptive)
 
 | Recoloring | T1, answer yes | T1, answer no | T3, answer yes | T3, answer no |
 | --- | --- | --- | --- | --- |
@@ -922,35 +1030,7 @@ Each interval at one-sided 0.060% (z = 3.24) instead of 2.5%.
 
 Cells: share of valid answers that are yes.
 
-### Correct on both drawings of a same-palette pair (descriptive)
-
-95% Wilson intervals.
-
-| Palette | T1 | T2 | T3 |
-| --- | --- | --- | --- |
-| tab10 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 |
-| d20 | 100.0% [83.9%, 100.0%], n = 20 | 100.0% [83.9%, 100.0%], n = 20 | 90.0% [69.9%, 97.2%], n = 20 |
-| d14 | 90.0% [69.9%, 97.2%], n = 20 | 90.0% [69.9%, 97.2%], n = 20 | 85.0% [64.0%, 94.8%], n = 20 |
-| d10 | 75.0% [53.1%, 88.8%], n = 20 | 70.0% [48.1%, 85.5%], n = 20 | 65.0% [43.3%, 81.9%], n = 20 |
-| d7 | 60.0% [38.7%, 78.1%], n = 20 | 45.0% [25.8%, 65.8%], n = 20 | 45.0% [25.8%, 65.8%], n = 20 |
-| d5 | 50.0% [29.9%, 70.1%], n = 20 | 10.0% [2.8%, 30.1%], n = 20 | 15.0% [5.2%, 36.0%], n = 20 |
-| d3 | 15.0% [5.2%, 36.0%], n = 20 | 5.0% [0.9%, 23.6%], n = 20 | 10.0% [2.8%, 30.1%], n = 20 |
-
-### H1 excess flips on the items at risk, where reading two colors as one changes the answer (descriptive)
-
-T1 and T3: no items only; T2: all items.
-
-| Recoloring | T1 | T2 | T3 |
-| --- | --- | --- | --- |
-| reassigned | 0.0% [-27.8%, 27.8%], n = 10 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-27.8%, 27.8%], n = 10 |
-| d20 | 0.0% [-27.8%, 27.8%], n = 10 | 0.0% [-16.1%, 16.1%], n = 20 | 0.0% [-27.8%, 27.8%], n = 10 |
-| d14 | 10.0% [-20.5%, 40.4%], n = 10 | 0.0% [-16.1%, 16.1%], n = 20 | 20.0% [-13.3%, 51.0%], n = 10 |
-| d10 | 20.0% [-13.3%, 51.0%], n = 10 | 25.0% [4.9%, 46.9%], n = 20 | 40.0% [1.1%, 68.7%], n = 10 |
-| d7 | 40.0% [1.1%, 68.7%], n = 10 | 55.0% [30.0%, 74.2%], n = 20 | 70.0% [22.8%, 89.2%], n = 10 |
-| d5 | 20.0% [-13.3%, 51.0%], n = 10 | 65.0% [38.4%, 81.9%], n = 20 | 100.0% [44.5%, 100.0%], n = 10 |
-| d3 | 80.0% [30.0%, 94.3%], n = 10 | 85.0% [55.2%, 94.8%], n = 20 | 90.0% [37.3%, 98.2%], n = 10 |
-
-### Error directions on the ladder (exploratory)
+### Error directions on the controlled palettes (exploratory)
 
 | Recoloring | False yes or overcount | False no or undercount | Invalid |
 | --- | --- | --- | --- |
@@ -985,9 +1065,9 @@ T1 and T3: no items only; T2: all items.
 
 Cells: accuracy, then invalid and missing replies.
 
-### Accuracy by hue center (exploratory)
+### Accuracy by base hue (exploratory)
 
-| Hue center | d20 | d14 | d10 | d7 | d5 | d3 |
+| Base hue | d20 | d14 | d10 | d7 | d5 | d3 |
 | --- | --- | --- | --- | --- | --- | --- |
 | 55 | 94.4% | 100.0% | 83.3% | 61.1% | 55.6% | 38.9% |
 | 115 | 100.0% | 100.0% | 94.4% | 94.4% | 61.1% | 44.4% |
@@ -996,7 +1076,7 @@ Cells: accuracy, then invalid and missing replies.
 | 295 | 100.0% | 95.8% | 83.3% | 62.5% | 50.0% | 45.8% |
 | 355 | 100.0% | 100.0% | 88.9% | 72.2% | 50.0% | 44.4% |
 
-### T2 accuracy by the position of u's color on the ladder (exploratory)
+### T2 accuracy by the position of u's color in the controlled palette (exploratory)
 
 | u's color | d20 | d14 | d10 | d7 | d5 | d3 | Items |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1007,7 +1087,7 @@ Each cell pools the recolored and the edited drawing.
 
 ### T1 accuracy by the spatial separation of u and v in the drawing (exploratory)
 
-Drawings where u and v have adjacent, different ladder colors.
+Drawings where u and v have adjacent, different colors of a controlled palette.
 
 | Distance between u and v | d20 | d14 | d10 | d7 | d5 | d3 | Items |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -1015,7 +1095,7 @@ Drawings where u and v have adjacent, different ladder colors.
 | 328 to 431 px | 100.0% | 66.7% | 83.3% | 33.3% | 66.7% | 16.7% | 6 |
 | 462 to 677 px | 100.0% | 100.0% | 85.7% | 85.7% | 42.9% | 14.3% | 7 |
 
-### Error analysis on the ladder (exploratory)
+### Accuracy on the controlled palettes by properties of the drawing (exploratory)
 
 | nodes | Accuracy | Items |
 | --- | --- | --- |
@@ -1042,7 +1122,7 @@ Drawings where u and v have adjacent, different ladder colors.
 | 4 | 76.0% | 8 |
 | 5 | 73.6% | 6 |
 
-### Accuracy on the ladder by output tokens (exploratory)
+### Accuracy on the controlled palettes by output tokens (exploratory)
 
 | Output tokens | Accuracy | Replies |
 | --- | --- | --- |
@@ -1051,7 +1131,7 @@ Drawings where u and v have adjacent, different ladder colors.
 | 325 to 463 | 69.4% | 180 |
 | 466 to 3350 | 61.7% | 180 |
 
-Rows are quartiles of this model's ladder replies; tied token counts share a row.
+Rows are quartiles of this model's replies on the controlled palettes; tied token counts share a row.
 
 ## Parser against hand coding
 

@@ -10,8 +10,8 @@ or about an edge (T4, the control). It is drawn as 15 images:
 
 - the original, in three colors of matplotlib's `tab10`;
 - the reassigned palette, which moves every group to another of these colors;
-- six ladder palettes, whose adjacent colors are 20, 14, 10, 7, 5 and 3 CIEDE2000 units apart;
-- an edited version of the original and of each ladder palette, in which one node moves to another
+- six controlled palettes, whose adjacent colors are 20, 14, 10, 7, 5 and 3 CIEDE2000 units apart;
+- an edited version of the original and of each controlled palette, in which one node moves to another
   group. The edit changes the answer in T1 to T3 and keeps it in T4.
 
 Each item is also asked again on the original (the repeat) and once without an image, which makes

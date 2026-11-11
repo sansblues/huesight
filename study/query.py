@@ -1,4 +1,4 @@
-"""Sends every query of a set to one model and logs every request and reply (Method, Models and settings).
+"""Sends every query of a set to one model and logs every request and reply (thesis, Study Design, Models and settings).
 
 Run: uv run study/query.py <set> <model>     (model: gpt, claude, gemini or qwen)
 Needs OPENAI_API_KEY, ANTHROPIC_API_KEY, GEMINI_API_KEY or OPENROUTER_API_KEY. It can be stopped
