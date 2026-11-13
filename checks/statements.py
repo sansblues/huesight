@@ -1,6 +1,6 @@
 """Reproduces numbers that the thesis states in its text but that no table holds: exact binomial bounds,
-the sign test behind an uncertain drop, counts of wrong answers, and how far adjacent palette colors
-lie apart in sRGB.
+the drawings behind an uncertain drop, counts of wrong answers, the decisions that would differ without
+the Bonferroni correction, and how far adjacent palette colors lie apart in sRGB.
 
 Run from the repository root: uv run checks/statements.py
 
@@ -38,13 +38,23 @@ def main():
         for name in ("accuracy, edited, d7", "accuracy, recolored, d14", "accuracy, edited, d14"):
             values = np.concatenate([analyze.differences(tables[task])[name] for task in analyze.ColorTasks])
             print(f"  {name}: {int((values < 0).sum())} drawings worse, {int((values > 0).sum())} better, "
-                  f"sign test p = {results[name]['sign test']:.2g}, decision {results[name]['decision']}")
+                  f"decision {results[name]['decision']}")
         near = [results[f"answer change, {r}"] for r in analyze.Recolorings if 0.02 < results[f"answer change, {r}"]["estimate"] < 0.08]
         print("  corrected intervals of answer changes near the margin:",
               [f"{100 * e['estimate']:.1f} [{100 * e['corrected'][0]:.1f}, {100 * e['corrected'][1]:.1f}]" for e in near])
+        for task_set, tasks in analyze.TaskSets.items():
+            entries = results if tasks == analyze.ColorTasks else analyze.analyze_tasks(tables, tasks, Tests)
+            print(f"  {task_set}, decided differently by the uncorrected 95% interval:",
+                  [f"{name}: {e['decision']} becomes {analyze.decision(name, *e['interval'])}" for name, e in entries.items()
+                   if analyze.decision(name, *e["interval"]) != e["decision"]])
     steps = [int(np.abs(rgb(palette[k]) - rgb(palette[1])).max()) for (_, d), palette in generate.LadderPalettes.items() if d == 10
              for k in (0, 2)]
     print("adjacent colors at 10 units differ by", min(steps), "to", max(steps), "of 255 levels in the channel that differs most")
+    for distance in generate.Distances:
+        largest = {hue: max(int(np.abs(rgb(palette[k]) - rgb(palette[1])).max()) for k in (0, 2))
+                   for (hue, d), palette in generate.LadderPalettes.items() if d == distance}
+        print(f"  at {distance} units, the largest difference per base hue:", dict(sorted(largest.items())),
+              "smallest at", min(largest, key=largest.get))
 
 
 def binomial_upper(changed, n, level):

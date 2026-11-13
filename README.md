@@ -13,8 +13,8 @@ color distance do a model's answers hold, and is 10 units enough?
 
 ## Results
 
-- **Claude Opus 5.5** answers as on the original down to 10 units. It loses at most 1 percentage
-  point of accuracy at 7 units and about 6 at 5 units, so the 10-unit recommendation is enough for it.
+- **Claude Opus 5.5** keeps its accuracy down to 10 units. It loses about 1 percentage point at 7
+  units, on 9 of 900 drawings, and 6 to 7 at 5 units, so the 10-unit recommendation is enough for it.
 - **Qwen3.8-27B** answers as on the original down to 20 units. It loses about 3 percentage points at
   14 units and 17 to 18 at 10 units, so the recommendation is not enough for it.
 - **The control:** both models answer at least 99% of the control questions correctly at every
